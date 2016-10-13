@@ -1,0 +1,391 @@
+User Rest API
+
+
+
+1) Get a User
+
+- Request: 
+
+curl -iXGET localhost:8081/user -H "Authorization: Bearer <token>" 
+
+
+
+- Errors
+
+-- 404 Not Found
+
+ + The user was not found.
+ 
+ 
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ 
+
+ 
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+
+{
+	"avatarId": <string>,
+	"canCreate": 0,
+	"userData": {
+		"secondEmail": "bigPopa@gmail.com",
+		"lastName": "Wallace",
+		"profileName": "biggieSmalls",
+		"gender": "Male",
+		"name": "Christopher George",
+		"mainEmail": "notiriousBig@gmail.com",
+		"phoneNum": null,
+		"countryCode": "US",
+		"birthDate": "1972-08-10T00:00:00Z"
+	},
+	"blockedAdmin": false,
+	"creationDate": "2016-08-12T00:18:50Z"
+}
+
+
+
+
+2) Create a User
+
+- Request:
+
+curl -iXPOST localhost:8081/user -H "Content-Type: application/json" -d '{
+     "basicData": {
+       "profileName": "biggiesmalls",
+       "name": "Christopher George",
+       "lastName": "Wallace",
+       "birthDate": "1972-08-10T00:00:00Z",
+       "countryCode": "US",
+       "gender": "Male",           
+       "mainEmail": "caesarleo@gmail.com",
+       "secondEmail": "bigPopa@gmail.com",
+       "phoneNumber": "+1309983212"      
+     },
+     "password": "abcd1992"
+}'
+
+
+
+
+- Errors:
+
+
+-- 400 Bad request
+ + Invalid main email: The email is not valid accordig to RFC 5322.
+ + Invalid password: A valid password has only alphanumeric characters, is longer than 4 characters, shorter than  21 
+   characters, and has at least a numeric character.
+ + Invalid profile name: A valid profile name has only alphanumeric characters, is longer than 3 characters and shorter than  21 
+   characters.
+ + Invalid country code: A valid country code must be a text according to ISO 3166
+ + Invalid birth date: A valid date must have the format yyyy-mm-ddThh:ss:ssZ
+ + Invalid gender: Valid genders are Male, Female, NoGen.
+ + Non-unique main email: A user cannot be created if its main email is not unique.
+ + Non-unique profile name: A user cannot be created if its profile name is not unique.
+
+
+- Successful response:
+
+-- 201 Created
+   Content-Type: application/json
+  
+{
+	"authToken":<JWToken>,
+	"user": {
+		"avatarId": <string>,
+		"canCreate": 0,
+		"userData": {
+			"secondEmail": "bigPopa@gmail.com",
+			"lastName": "Wallace",
+			"profileName": "BiggieSmalls",
+			"gender": "Male",
+			"name": "Christopher George",
+			"mainEmail": "notiriousBig@gmail.com",
+			"phoneNum": <string>,
+			"countryCode": "US",
+			"birthDate": "1972-08-10T00:00:00Z"
+		},
+		"blockedAdmin": false,
+		"creationDate": "2016-08-12T00:03:56.742548Z"
+	}
+}
+
+
+
+
+
+3) Update an User's basic data
+
+- Request:
+
+curl -iXPUT localhost:8081/user/basicData -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{
+     "profileName": "biggiesmalls",
+     "name": "Christopher George",
+     "lastName": "Wallace",
+     "birthDate": "1972-08-10T00:00:00Z",
+     "countryCode": "US",
+     "gender": "Male",            
+     "mainEmail": "notiriousBig@gmail.com",
+     "secondEmail": "bigPopa@gmail.com",
+     "phoneNumber": "+1309983212"     
+ }'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Invalid main email: The email is not valid accordig to RFC 5322.
+ + Invalid profile name: A valid profile name has only alphanumeric characters, is longer than 3 characters and shorter than  21 
+   characters.
+ + Invalid country code: A valid country code must be a text according to ISO 3166
+ + Invalid birth date: A valid date must have the format yyyy-mm-ddThh:ss:ssZ
+ + Invalid gender: Valid genders are Male, Female, NoGen.
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The user to update was not found.
+
+
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+
+- Successful Response 
+
+-- 200 OK
+ + A new token is generated because the profile name is encoded in it and it may have changed.
+   Content-Type: application/json
+  {"expiration":"2016-08-22T22:05:17.021904Z","token":<string>}
+
+
+
+
+4-5) Ask for profile name and email availability
+
+- Request: 
+
+curl -iXGET localhost:8081/user/isAvailable/profileName/<profileName>
+
+curl -iXGET localhost:8081/user/isAvailable/email/<main_email>
+
+
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+   
+ + true if either profName or mainEmail are available.
+ + false if either profName or mainEmail are not available.
+
+
+
+
+
+
+6) change a user's password
+
+- Request:
+
+curl -iXPUT localhost:8081/user/changePassword -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{
+  "oldPassword": "abcd1992",
+  "newPassword": "abcd1882"
+}'
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Invalid password: A valid password has only alphanumeric characters, has at least 7 characters, is shorter than  21 
+   characters, and has at least a numeric character.
+
+-- 404 Not Found
+ + The user to update was not found.
+
+
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+7) Upload a user's avatar
+
+- Request:
+
+curl -iXPOST localhost:8081/user/avatar -H "Authorization: Bearer <token>" -H "Content-Type: image/jpeg" --data-binary "@some-img.jpg"
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + The image size was less than 105kb or grater than 5mb.
+
+-- 404 Not Found
+ + The user to update was not found.
+
+
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+-- 415 Unsupported Media Type
+ + Only JPEG images are supported.
+
+- Successful Response 
+
+-- 201
+   Content-Type: text/plain
+   <userToken>
+
+
+
+8) Delete a user's avatar
+
+- Request:
+
+curl -iXDELETE localhost:8081/user/avatar -H "Authorization: Bearer <token>" 
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The user to update was not found.
+
+
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+9) Generate an User's authentication token 
+
+- Request:
+
+curl -iXPUT localhost:8081/user/getAuthToken -H "Authorization: Basic bmlnZ2F6QGdtYWlsLmNvbTphYmNkMTk5Mg=="
+
+-- 401 Unauthorized
+ + Invalid credentials: profName and password.
+ 
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+   
+  {"expiration":"2016-08-22T22:05:17.021904Z","token":<string>}
+
+
+
+
+10) Invalidate an authentication token
+
+- Request:
+
+curl -iXPUT localhost:8081/user/invalidateToken -H "Authorization: Bearer <token>"
+
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The user to update was not found.
+
+
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+11) Refresh an authentication token
+
+
+- Request:
+
+curl -iXPUT localhost:8081/user/refreshToken  -H "Authorization: Bearer <token>"
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The user to update was not found.
+
+
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+   
+  {"expiration":"2016-08-22T22:05:17.021904Z","token":<string>}
+
+
+
+
+
+

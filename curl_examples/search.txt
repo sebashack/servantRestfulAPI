@@ -1,0 +1,47 @@
+-- Basic Search
+
+curl -iXGET 'localhost:8081/bookables/basicSearch?from=0&size=15' -H "Content-Type: application/json" -d '{ 
+     "country": "US",         
+     "guestNum": 2,
+     "destination": "California, Los Angeles",
+     "checkInOut": {
+       "checkIn": "2016-10-05T00:00:00Z",
+       "checkOut": "2016-10-10T00:00:00Z"
+     },
+     "numRooms": 2
+}'
+
+
+
+-- Advanced Search
+    
+
+curl -iXGET 'localhost:8081/bookables/advancedSearch?from=0&size=12' -H "Content-Type: application/json" -d '{
+    "basicSearch": { "country": "US", "guestNum": 2, "destination": "California, Los Angeles", 
+                     "checkInOut": { "checkIn": "2016-10-05T00:00:00Z", "checkOut": "2016-10-10T00:00:00Z" }, 
+                     "numRooms": 1 },
+	"priceRange": { "lowerPrice": 4000, "upperPrice": 20000 },
+	"discount": 5,
+	"propType": null,
+	"propFacilities": [
+      "parking",
+      "fitness center",
+      "wifi",
+      "heating",
+      "air conditioning",
+      "non-smoking rooms",
+      "sauna",
+      "restaurant",
+      "bar",
+      "laundry",
+      "newpapers",
+      "outdoor pool",
+      "atm/cash-machine",
+      "spanish",
+      "english",
+      "french",
+      "german"
+],
+	"bklAmenities": ["breakfast in room", "air conditioning", "bathtub", "heating", "cable tv", "wifi", "minibar"],
+	"beds": 1
+}'

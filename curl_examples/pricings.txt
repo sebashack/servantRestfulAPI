@@ -1,0 +1,316 @@
+-- Property 1 Pricings --
+
+
+Remember that USD must be stored as an integer of the form nnn...cc. For example 1046 is equivalent to ten dollars with 46 cents.
+
+- Bookable 1 
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtd2_uBO20bzl3OFV2 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 6000,
+     "roomDiscount": 10 
+}'
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtd2_uBO20bzl3OFV2 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+     "occupancy": 3,         
+     "conditions": ["Breakfast included", "40% Cancellation", "Children Not allowed", "Pets Allowed"],
+     "nightPrice": 7500,
+     "roomDiscount": 5 
+}'
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtd2_uBO20bzl3OFV2 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["No Refund on Cancellation", "Children Not allowed", "Pets Not Allowed"],
+     "nightPrice": 5500,
+     "roomDiscount": 0 
+}'
+
+
+
+- Bookable 2
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtfbhgBO20bzl3OFV4 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 8000,
+     "roomDiscount": 15 
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtfbhgBO20bzl3OFV4 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+     "occupancy": 3,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 9000,
+     "roomDiscount": 20 
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtfbhgBO20bzl3OFV4 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+     "occupancy": 4,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 10000,
+     "roomDiscount": 25
+}'
+
+
+- Bookable 3
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtiVpfBO20bzl3OFV6 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 3,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 10000,
+     "roomDiscount": 20
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtiVpfBO20bzl3OFV6 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 4,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 11000,
+     "roomDiscount": 25 
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtiVpfBO20bzl3OFV6 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 5,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Allowed"],
+     "nightPrice": 12000,
+     "roomDiscount": 10
+}'
+
+
+
+
+
+-- Property 2 Pricings -- 
+
+
+- Bookable 1
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtkMZ6BO20bzl3OFV8 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '{     
+     "occupancy": 1,         
+     "conditions": ["Free Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 4000,
+     "roomDiscount": 10 
+}'
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtkMZ6BO20bzl3OFV8 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '{     
+     "occupancy": 1,         
+     "conditions": ["Breakfast included", "Free Cancellation", "Children Not allowed", "Pets Allowed"],
+     "nightPrice": 5000,
+     "roomDiscount": 5 
+}'
+
+
+
+
+- Bookable 2
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtlkA8BO20bzl3OFV- -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Free Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 4500,
+     "roomDiscount": 5
+}'
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtlkA8BO20bzl3OFV- -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "Free Cancellation", "Children Not allowed", "Pets Allowed"],
+     "nightPrice": 5500,
+     "roomDiscount": 0
+}'
+
+
+
+
+
+-- Property 3 Pricings -- 
+
+
+
+- Bookable 1
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtm-Z2BO20bzl3OFWA  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{     
+     "occupancy": 3,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 400000,
+     "roomDiscount": 10 
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtm-Z2BO20bzl3OFWA  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 3,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 420000,
+     "roomDiscount": 20
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtm-Z2BO20bzl3OFWA  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 4,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 440000,
+     "roomDiscount": 10
+}'
+
+
+
+
+- Bookable 2
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtoGxIBO20bzl3OFWB -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 4,         
+     "conditions": ["Breakfast included", "50% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 430000,
+     "roomDiscount": 30
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtoGxIBO20bzl3OFWB -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 5,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 460000,
+     "roomDiscount": 10
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtoGxIBO20bzl3OFWB -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 6,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 480000,
+     "roomDiscount": 5
+}'
+
+
+
+
+
+- Bookable 3
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtqb1DBO20bzl3OFWE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 4,         
+     "conditions": ["Breakfast included", "50% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 500000,
+     "roomDiscount": 30
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtqb1DBO20bzl3OFWE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 5,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 520000,
+     "roomDiscount": 10
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtqb1DBO20bzl3OFWE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 6,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 550000,
+     "roomDiscount": 5
+}'
+
+
+
+
+
+-- Property 4 Pricings -- 
+
+-- Bookable 1
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtvUCkBO20bzl3OFWG -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 200000,
+     "roomDiscount": 30 
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtvUCkBO20bzl3OFWG -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0"  -H "Content-Type: application/json" -d '{     
+     "occupancy": 3,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 250000,
+     "roomDiscount": 10
+}'
+
+
+
+
+-- Bookable 2
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtv5FxBO20bzl3OFWH -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 300000,
+     "roomDiscount": 20 
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtv5FxBO20bzl3OFWH -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+     "occupancy": 3,         
+     "conditions": ["Breakfast included", "30% Cancellation", "Children Allowed", "Pets Not Allowed"],
+     "nightPrice": 350000,
+     "roomDiscount": 35
+}'
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtv5FxBO20bzl3OFWH -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+     "occupancy": 4,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children", "Pets Not Allowed"],
+     "nightPrice": 400000,
+     "roomDiscount": 10 
+}'
+
+
+
+-- Bookable 3
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtw-PqBO20bzl3OFWI -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["50% Cancellation", "Pets Not Allowed"],
+     "nightPrice": 200000,
+     "roomDiscount": 10
+}'
+
+
+
+curl -iXPUT localhost:8081/bookable/addPricing/AVdtw-PqBO20bzl3OFWI -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "Pets Allowed", "Free Cancellation"],
+     "nightPrice": 250000,
+     "roomDiscount": 0
+}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+

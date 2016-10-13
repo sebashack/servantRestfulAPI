@@ -1,0 +1,343 @@
+-- Property 1 Bookables -- 
+
+- Bookable 1
+
+bklId: AVdtd2_uBO20bzl3OFV2
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsn83ZBO20bzl3OFVt",
+    "bklSpecs": {
+       "name": "Standard Room",         
+       "roomSize": "25x25",
+       "bedType": "standard bed",
+       "bedNum": 1,
+       "amenities": ["breakfast in room", "air conditioning", "bathtub", "heating", "cable tv", "wifi", "minibar"]
+     },
+     "esDesc": "Una habitacion sencilla pero confortable para pasarla con tu pareja. Aparte de eso es muy economica.",
+     "enDesc": "An simple but comfortable room to be with your couple. Also take into account that it is pretty economic.",
+     "maxOccu": 3,
+     "roomIds": ["101", "102", "103", "104", "105", "106", "107", "108", "109"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtd2_uBO20bzl3OFV2 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: image/jpeg" --data-binary "@room1.jpg"
+
+curl -iXPUT localhost:8081/bookable/list/AVdtd2_uBO20bzl3OFV2 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"
+
+
+
+
+- Bookable 2
+
+bklId: AVdtfbhgBO20bzl3OFV4
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsn83ZBO20bzl3OFVt",
+    "bklSpecs": {
+       "name": "Double Room",         
+       "roomSize": "30x30",
+       "bedType": "double bed",
+       "bedNum": 1,
+       "amenities": ["breakfast in room", "air conditioning", "bathtub", "heating", "cable tv", "wifi", "minibar"]
+     },
+     "esDesc": "Una habitacion doble y confortable para pasarla con tu pareja. Aparte de eso no es muy costosa.",
+     "enDesc": "An double and comfortable room to be with your couple. Also take into account that it is not too expensive.",
+     "maxOccu": 4,
+     "roomIds": ["201", "202", "203", "204", "205", "206", "207", "208", "209"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtfbhgBO20bzl3OFV4 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: image/jpeg" --data-binary "@room2.jpg"
+
+
+curl -iXPUT localhost:8081/bookable/list/AVdtfbhgBO20bzl3OFV4 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"
+
+
+
+
+- Bookable 3
+
+bklId: AVdtiVpfBO20bzl3OFV6
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsn83ZBO20bzl3OFVt",
+    "bklSpecs": {
+       "name": "Family Room",         
+       "roomSize": "35x35",
+       "bedType": "simple bed",
+       "bedNum": 2,
+       "amenities": ["breakfast in room", "air conditioning", "bathtub", "heating", "cable tv", "wifi", "minibar"]
+     },
+     "esDesc": "Una habitacion grande y confortable para pasarla con tu familia. Aparte de eso no es muy costosa.",
+     "enDesc": "An double and comfortable room to be with your family. Also take into account that it is not too expensive.",
+     "maxOccu": 5,
+     "roomIds": ["301", "302", "303", "304", "305", "306", "307", "308", "309"]      
+}'
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtiVpfBO20bzl3OFV6 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: image/jpeg" --data-binary "@room3.jpg"
+
+
+curl -iXPUT localhost:8081/bookable/list/AVdtiVpfBO20bzl3OFV6 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"
+
+
+
+
+-- Property 2 Bookables --
+
+
+- Bookable 1
+
+bklId: AVdtkMZ6BO20bzl3OFV8
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsuSXyBO20bzl3OFVv",
+    "bklSpecs": {
+       "name": "Student Room",         
+       "roomSize": "7x7",
+       "bedType": "simple bed",
+       "bedNum": 1,
+       "amenities": ["air conditioning", "heating", "wifi"]
+     },
+     "esDesc": "Una habitacion sencilla pero confortable para pasarla un estudiante. Aparte de eso es muy economica.",
+     "enDesc": "An simple but comfortable room for an student. Also take into account that it is pretty economic.",
+     "maxOccu": 1,
+     "roomIds": ["11", "12", "13", "14"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtkMZ6BO20bzl3OFV8 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: image/jpeg" --data-binary "@room4.jpg"
+
+
+curl -iXPUT localhost:8081/bookable/list/AVdtkMZ6BO20bzl3OFV8 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ"
+
+
+
+
+- Bookable 2
+
+bklId: AVdtlkA8BO20bzl3OFV-
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsuSXyBO20bzl3OFVv",
+    "bklSpecs": {
+       "name": "Student Double Room",         
+       "roomSize": "10x10",
+       "bedType": "double bed",
+       "bedNum": 1,
+       "amenities": ["air conditioning", "heating", "wifi"]
+     },
+     "esDesc": "Una habitacion sencilla pero confortable para pasarla dos estudiantes. Aparte de eso es muy economica.",
+     "enDesc": "An simple but comfortable room for two students. Also take into account that it is pretty economic.",
+     "maxOccu": 2,
+     "roomIds": ["21", "22", "23", "24"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtlkA8BO20bzl3OFV- -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: image/jpeg" --data-binary "@room5.jpg"
+
+
+curl -iXPUT localhost:8081/bookable/list/AVdtlkA8BO20bzl3OFV- -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ"
+
+
+
+
+
+-- Property 3 Bookables --
+
+
+- Bookable 1
+
+bklId: AVdtm-Z2BO20bzl3OFWA 
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsxNWcBO20bzl3OFVy",
+    "bklSpecs": {
+       "name": "Standard Resort",         
+       "roomSize": "50x50",
+       "bedType": "double bed",
+       "bedNum": 1,
+       "amenities": ["breakfast in room", 
+                     "air conditioning", 
+                     "bathtub", 
+                     "heating", 
+                     "cable tv",
+                     "wifi", 
+                     "minibar",
+                     "sound bar", 
+                     "kitchen", 
+                     "fridge"]
+     },
+     "esDesc": "Un resort sencillo pero confortable para un deportista la pase con tu pareja. Aparte de esta a muy buen precio.",
+     "enDesc": "An simple but comfortable resort for a sportsman to be with his couple. Also take into account that it is not expensive.",
+     "maxOccu": 4,
+     "roomIds": ["A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtm-Z2BO20bzl3OFWA -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: image/jpeg" --data-binary "@room6.jpg"
+
+
+curl -iXPUT localhost:8081/bookable/list/AVdtm-Z2BO20bzl3OFWA -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"
+
+
+
+
+- Bookable 2
+
+bklId: AVdtoGxIBO20bzl3OFWB
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsxNWcBO20bzl3OFVy",
+    "bklSpecs": {
+       "name": "Queen Resort",         
+       "roomSize": "70x70",
+       "bedType": "queen bed",
+       "bedNum": 2,
+       "amenities": ["breakfast in room", 
+                     "air conditioning", 
+                     "bathtub", 
+                     "heating", 
+                     "cable tv",
+                     "wifi", 
+                     "minibar",
+                     "sound bar", 
+                     "kitchen", 
+                     "fridge"]
+     },
+     "esDesc": "Un resort sencillo pero confortable para un deportista la pase con su familia. Aparte de esta a muy buen precio.",
+     "enDesc": "An simple but comfortable resort for a sportsman to be with his family. Also take into account that it is not expensive.",
+     "maxOccu": 6,
+     "roomIds": ["B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8"]      
+}'
+
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtoGxIBO20bzl3OFWB -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: image/jpeg" --data-binary "@room7.jpg"
+
+
+curl -iXPUT localhost:8081/bookable/list/AVdtoGxIBO20bzl3OFWB -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" 
+
+
+
+- Bookable 3
+
+bklId: AVdtqb1DBO20bzl3OFWE
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsxNWcBO20bzl3OFVy",
+    "bklSpecs": {
+       "name": "Luxury Resort",         
+       "roomSize": "70x70",
+       "bedType": "luxury bed",
+       "bedNum": 2,
+       "amenities": ["breakfast in room", 
+                     "air conditioning", 
+                     "bathtub", 
+                     "heating", 
+                     "cable tv",
+                     "wifi", 
+                     "minibar",
+                     "sound bar", 
+                     "kitchen", 
+                     "fridge",
+                     "jacuzzi"]
+     },
+     "esDesc": "Un resort lujoso y confortable para un deportista la pase con su familia. Aparte de esta a muy buen precio.",
+     "enDesc": "An simple and comfortable resort for a sportsman to be with his family. Also take into account that it is not very expensive.",
+     "maxOccu": 6,
+     "roomIds": ["C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtqb1DBO20bzl3OFWE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: image/jpeg" --data-binary "@room8.jpg"
+
+curl -iXPUT localhost:8081/bookable/list/AVdtqb1DBO20bzl3OFWE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"
+
+
+
+
+-- Property 4 Bookables --
+
+
+- Bookable 1
+
+bklId: AVdtvUCkBO20bzl3OFWG 
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsytlJBO20bzl3OFVz",
+    "bklSpecs": {
+       "name": "King Room",         
+       "roomSize": "25x25",
+       "bedType": "King bed",
+       "bedNum": 1,
+       "amenities": ["breakfast in room", "air conditioning", "bathtub", "heating", "cable tv", "wifi", "minibar", "fridge"]
+     },
+     "esDesc": "Una habitacion hermosa y confortable para pasarla con tu pareja. Aparte de eso es muy economica.",
+     "enDesc": "An beautiful and comfortable room to be with your couple. Also take into account that it is pretty economic.",
+     "maxOccu": 3,
+     "roomIds": ["401", "402", "403", "404", "405", "406", "407", "408", "409"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtvUCkBO20bzl3OFWG -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: image/jpeg" --data-binary "@room9.jpg"
+
+curl -iXPUT localhost:8081/bookable/list/AVdtvUCkBO20bzl3OFWG -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0"
+
+
+
+
+
+- Bookable 2
+
+bklId: AVdtv5FxBO20bzl3OFWH
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsytlJBO20bzl3OFVz",
+    "bklSpecs": {
+       "name": "Luxury Room",         
+       "roomSize": "25x25",
+       "bedType": "luxury bed",
+       "bedNum": 1,
+       "amenities": ["breakfast in room", "air conditioning", "bathtub", "heating", "cable tv", "wifi", "minibar", "fridge", "jacuzzi"]
+     },
+     "esDesc": "Una habitacion hermosa y confortable para pasarla con tu pareja. Aparte de eso tiene una gran vista",
+     "enDesc": "An beautiful and comfortable room to be with your couple. Also take into account that ii has a great sight",
+     "maxOccu": 4,
+     "roomIds": ["501", "502", "503", "504", "505", "506", "507", "508", "509"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtv5FxBO20bzl3OFWH -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: image/jpeg" --data-binary "@room10.jpg"
+
+curl -iXPUT localhost:8081/bookable/list/AVdtv5FxBO20bzl3OFWH -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0"
+
+
+
+- Bookable 3
+
+bklId: AVdtw-PqBO20bzl3OFWI
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{     
+    "propId": "AVdsytlJBO20bzl3OFVz",
+    "bklSpecs": {
+       "name": "Couple Room",         
+       "roomSize": "15x15",
+       "bedType": "double bed",
+       "bedNum": 1,
+       "amenities": ["breakfast in room", "air conditioning", "bathtub", "heating", "cable tv", "wifi", "minibar", "fridge", "jacuzzi"]
+     },
+     "esDesc": "Una habitacion hermosa y confortable para pasarla con tu pareja. Aparte de eso tiene una gran vista",
+     "enDesc": "An beautiful and comfortable room to be with your couple. Also take into account that ii has a great sight",
+     "maxOccu": 2,
+     "roomIds": ["601", "602", "603", "604", "605", "606", "607", "608", "609"]      
+}'
+
+
+curl -iXPOST localhost:8081/bookable/postImg/AVdtw-PqBO20bzl3OFWI -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: image/jpeg" --data-binary "@room11.jpg"
+
+
+curl -iXPUT localhost:8081/bookable/list/AVdtw-PqBO20bzl3OFWI -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0"
+
+
+
+

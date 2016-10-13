@@ -1,0 +1,173 @@
+-- property 1 -- 
+
+admin: biggiesmalls
+propId: AVdsn83ZBO20bzl3OFVt
+
+curl -iXPOST localhost:8081/property -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{
+     "name":"Hotel California",
+     "propType": "hotel",
+     "location": {
+       "countryCode": "US",         
+       "region": "California",
+       "city": "Los Angeles",
+       "address": "west coast LA",
+       "zipCode": "0348"
+     } 
+}'
+
+curl -iXPOST localhost:8081/property/postImg/AVdsn83ZBO20bzl3OFVt -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: image/jpeg" --data-binary "@hotel1.jpg"
+
+curl -iXPUT localhost:8081/property/mainImg/AVdsn83ZBO20bzl3OFVt/AVdsn83ZBO20bzl3OFVt016092761900390560 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"
+
+curl -iXPUT localhost:8081/property/facilities/AVdsn83ZBO20bzl3OFVt -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '[
+  "parking",
+  "fitness center",
+  "wifi",
+  "heating",
+  "air conditioning",
+  "non-smoking rooms",
+  "sauna",
+  "restaurant",
+  "bar",
+  "laundry",
+  "newpapers",
+  "outdoor pool",
+  "atm/cash-machine",
+  "spanish",
+  "english",
+  "french",
+  "german"
+]'
+
+
+
+
+-- property 2 -- 
+
+admin: peaceNlove
+propId: AVdsuSXyBO20bzl3OFVv
+
+curl -iXPOST localhost:8081/property -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '{
+     "name":"Hostal NYC",
+     "propType": "hostal",
+     "location": {
+       "countryCode": "US",         
+       "region": "New York",
+       "city": "Brooklyn",
+       "address": "nyc 126, brooklyn",
+       "zipCode": "5328"
+     } 
+}'
+
+
+curl -iXPOST localhost:8081/property/postImg/AVdsuSXyBO20bzl3OFVv -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: image/jpeg" --data-binary "@hotel2.jpg"
+
+curl -iXPUT localhost:8081/property/mainImg/AVdsuSXyBO20bzl3OFVv/AVdsuSXyBO20bzl3OFVv016092763650888124 -H "Authorization: Bearer"
+
+curl -iXPUT localhost:8081/property/facilities/AVdsuSXyBO20bzl3OFVv -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ" -H "Content-Type: application/json" -d '[
+  "wifi",
+  "heating",
+  "air conditioning",
+  "bar",
+  "spanish",
+  "english",
+  "french"
+]'
+
+
+
+
+
+
+-- property 3 --
+
+admin: jrodriguez10
+propId: AVdsxNWcBO20bzl3OFVy
+
+curl -iXPOST localhost:8081/property -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{
+     "name":"El Deportista",
+     "propType": "resort",
+     "location": {
+       "countryCode": "CO",         
+       "region": "Atlantico",
+       "city": "Barranquilla",
+       "address": "calle 24 # 40-23",
+       "zipCode": "0420"
+     } 
+}'
+
+
+curl -iXPOST localhost:8081/property/postImg/AVdsxNWcBO20bzl3OFVy -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: image/jpeg" --data-binary "@hotel3.jpg"
+
+curl -iXPUT localhost:8081/property/mainImg/AVdsxNWcBO20bzl3OFVy/AVdsxNWcBO20bzl3OFVy016092764297111151 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" 
+
+curl -iXPUT localhost:8081/property/facilities/AVdsxNWcBO20bzl3OFVy -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '[
+  "parking",
+  "fitness center",
+  "wifi",
+  "heating",
+  "air conditioning",
+  "non-smoking rooms",
+  "sauna",
+  "restaurant",
+  "bar",
+  "laundry",
+  "newpapers",
+  "outdoor pool",
+  "atm/cash-machine",
+  "spanish",
+  "english",
+  "french",
+  "german"
+]'
+
+
+
+
+
+
+-- property 4 -- 
+
+admin: siemprevives
+propId: AVdsytlJBO20bzl3OFVz
+
+curl -iXPOST localhost:8081/property -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '{
+     "name":"El Musico",
+     "propType": "hotel",
+     "location": {
+       "countryCode": "CO",         
+       "region": "Antioquia",
+       "city": "Medellin",
+       "address": "calle 2 # 30-23",
+       "zipCode": "0423"
+     } 
+}'
+
+
+curl -iXPOST localhost:8081/property/postImg/AVdsytlJBO20bzl3OFVz -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: image/jpeg" --data-binary "@hotel4.jpg"
+
+
+curl -iXPUT localhost:8081/property/mainImg/AVdsytlJBO20bzl3OFVz/AVdsytlJBO20bzl3OFVz016092764845265079 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0"
+
+
+curl -iXPUT localhost:8081/property/facilities/AVdsytlJBO20bzl3OFVz -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0" -H "Content-Type: application/json" -d '[
+  "wifi",
+  "heating",
+  "air conditioning",
+  "bar",
+  "spanish",
+  "english",
+  "french"
+]'
+
+
+
+
+
+
+
+
+
+
+
+

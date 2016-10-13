@@ -1,0 +1,94 @@
+Side Services API
+
+1) Get a Bookable's image
+
+- Request:
+
+http://localhost:8081/bookable/image/<imageId>?size=medium
+
+
+-- 404 Not Found
+
+ + The image was not found.
+
+
+-- 500 Internal Server Error
+
+ + There was a problem while decoding image. 
+ 
+ 
+-- 200 OK
+   Content-Type: image/jpeg
+
+
+
+
+
+2) Get a Property's image
+
+- Request:
+
+http://localhost:8081/property/image/<imageId>?size=medium?size=medium
+
+-- 404 Not Found
+
+ + The image was not found.
+
+
+-- 500 Internal Server Error
+
+ + There was a problem while decoding image. 
+ 
+ 
+-- 200 OK
+   Content-Type: image/jpeg
+
+
+
+
+
+3) Get a User's avatar
+
+- Request:
+
+http://localhost:8081/user/avatar/<imageId>?size=medium?size=avatar
+
+-- 404 Not Found
+
+ + The image was not found.
+
+
+-- 500 Internal Server Error
+
+ + There was a problem while decoding image. 
+ 
+ 
+-- 200 OK
+   Content-Type: image/jpeg
+
+
+
+
+
+4) Send a recovery-password code
+
+- Request: 
+
+curl -iXPUT localhost:8081/user/forgotPassword/sendEmail?lang=esp -H "Content-Type: application/json" -d '"sebastian0092@gmail.com"'
+
+
+
+
+5) reset a user's password
+
+- Request:
+
+curl -iXPUT localhost:8081/user/forgotPassword/resetPassword -H "Content-Type: application/json" -d '{
+  "profName": "juanmas",
+  "recoveryCode": "oa57PKnq43EMtx54DP",
+  "newPassword": "pazcolombia1992"
+}'
+
+
+
+

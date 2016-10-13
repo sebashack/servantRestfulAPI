@@ -1,0 +1,999 @@
+Reservation Rest API
+
+
+
+1) Get a Reservation
+
+- Request: 
+
+curl -iXGET localhost:8081/reservation/<reservationId> -H "Authorization: <token>"
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+ + User and Reservation do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+{
+	"state": "Accepted",
+	"basicData": {
+		"contactPhone": "+57251892434",
+		"email": "florentino@gmail.com",
+		"specialReqs": null,
+		"lastName": "Florentino",
+		"propId": "AVbW7yKccdE2ZW7EULtK",
+		"messageToHost": null,
+		"checkIn": "2016-09-05T00:00:00Z",
+		"byAdmin": true,
+		"name": "Perez",
+		"checkOut": "2016-09-20T00:00:00Z"
+	},
+	"absence": [
+		"2016-09-06T00:00:00Z",
+		"2016-09-20T00:00:00Z"
+	],
+	"numNights": 15,
+	"expiration": "2016-09-01T15:56:21Z",
+	"guestArrived": false,
+	"reservId": 23,
+	"resCode": "xh42ape6",
+	"submitted": "2016-08-31T15:56:21Z"
+}
+ 
+
+
+
+2) Get a Reservation's ReservedPricings
+
+- Request: 
+
+curl -iXGET localhost:8081/reservation/pricingInfo/23 -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+ + User and Reservation do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+[
+	{
+		"assignedRooms": [
+			"201",
+			"202",
+			"203",
+			"204",
+			"205"
+		],
+		"resCheckIn": "2016-09-05T00:00:00Z",
+		"discount": 20,
+		"nightPrice": 60,
+		"resCheckOut": "2016-09-20T00:00:00Z",
+		"occupancy": 2,
+		"numRooms": 5,
+		"bklName": "Simple Room",
+		"conditions": [
+			"50% Cancellation",
+			"Breakfast included",
+			"No children"
+		],
+		"bklId": "AVbW_-f1cdE2ZW7EULtP",
+		"priInfoId": 41
+	},
+	{
+		"assignedRooms": [
+			"112",
+			"113",
+			"114",
+			"115"
+		],
+		"resCheckIn": "2016-09-05T00:00:00Z",
+		"discount": 20,
+		"nightPrice": 60,
+		"resCheckOut": "2016-09-20T00:00:00Z",
+		"occupancy": 1,
+		"numRooms": 4,
+		"bklName": "Couple Room",
+		"conditions": [
+			"50% Cancellation",
+			"Breakfast included",
+			"No children"
+		],
+		"bklId": "AVbW9USbcdE2ZW7EULtN",
+		"priInfoId": 42
+	}
+]
+
+
+
+
+
+3) Create a Reservation as a User.
+
+
+Note that if specialReqs, messageToHost and contactPhone are not valid, a null will be stored in DB.                                     
+Also note that if no email is provided, the main email of that user will be the one stored in the Reservation.
+Finally, as the internal implementation uses sets and since each userPricing is identified by its userPricingId, each
+duplicate will be left out. Thus, you shouldn't provide userPricings with duplicate userPricingIds.
+
+
+- Request:
+
+curl -iXPOST localhost:8081/user/reservation -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{     
+    "userReservation": {
+       "propId": "AVbW7yKccdE2ZW7EULtK",         
+       "name": "Cristiano",
+       "lastName": "Ronaldo",
+       "checkIn": "2016-09-20T00:00:00Z",
+       "checkOut": "2016-09-26T00:00:00Z",
+       "email": "erik@gmail.com",
+       "specialReqs": "A red carpet for my nice shoes which are very expensive.",
+       "messageToHost": "Hi, I would like to stay at your nice Hotel you the ones who killed kenny",
+       "contactPhone": "+573194567898"  
+     },
+    "userPricings": [
+      { "userBkl": "AVbW9USbcdE2ZW7EULtN",         
+        "userPricing": "AVbW9USbcdE2ZW7EULtN2016082959173851814",
+        "roomNum": 2 },
+      { "userBkl": "AVbW_-f1cdE2ZW7EULtP",         
+        "userPricing": "AVbW_-f1cdE2ZW7EULtP2016082960370734775",
+        "roomNum": 3 }
+     ]
+}'
+
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ + Bookable does not match property.
+ + Invalid nameString: A valid nameString has only alphanumeric characters, is longer than 3 characters and shorter than  21 
+   characters.
+ + Some userPricings have a number of rooms less than 0.
+ + Some userPrcings have a number of rooms greater than the bookable's number
+   of available units.
+ + Some bookables in the reservation are unlisted.
+ + Bookable and property do not match.
+ + Number of rooms greater than a bookable's size of total rooms.
+ + checkIn-checkOut greater than 30 nights.
+ + checkIn-checkOut less than 1 nights.
+ + checkIn greater than checkOut.
+ + checkIn less than current day.
+ + There are empty assigned rooms.
+ + The number of rooms for some bookables is not available for the reservation period.
+ + The reservation is made with more than 365 days of anticipation.
+ 
+ 
+ 
+-- 404 Not Found
+ + Property was not found.
+ + Bookable was not found.
+ + Some pricings in reservation where not found in their bookables.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 201 OK
+   Content-Type: application/json
+
+{
+	"state": "Pending",
+	"basicData": {
+		"contactPhone": "+573194567898",
+		"email": "erik@gmail.com",
+		"specialReqs": "A red carpet for my nice shoes which are very expensive.",
+		"lastName": "Ronaldo",
+		"propId": "AVbW7yKccdE2ZW7EULtK",
+		"messageToHost": "Hi, I would like to stay at your nice Hotel you the ones who killed kenny",
+		"checkIn": "2016-09-20T00:00:00Z",
+		"byAdmin": false,
+		"name": "Cristiano",
+		"checkOut": "2016-09-26T00:00:00Z"
+	},
+	"absence": [
+		"2016-09-27T00:00:00Z",
+		"2016-09-26T00:00:00Z"
+	],
+	"numNights": 6,
+	"expiration": "2016-08-31T20:24:43.305819Z",
+	"guestArrived": false,
+	"reservId": 21,
+	"resCode": "lf79sid2",
+	"submitted": "2016-08-30T20:24:43.305819Z"
+}
+
+
+
+
+
+4) Create a Reservation as an Admin.
+
+Note that if specialReqs, messageToHost and contactPhone are not valid, a null will be stored in DB.                                     
+Also note that if no email is provided, the main email of that user will be the one stored in the Reservation.
+Finally, as the internal implementation uses sets and since each userPricing is identified by its userPricingId, each
+duplicate will be left out. Thus, you shouldn't provide userPricings with duplicate userPricingIds.
+
+
+- Request:
+
+curl -iXPOST localhost:8081/admin/reservation -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{     
+    "adminReservation": {
+       "propId": "AVbW7yKccdE2ZW7EULtK",         
+       "name": "Oscar",
+       "lastName": "De leon",
+       "checkIn": "2016-12-15T00:00:00Z",
+       "checkOut": "2016-12-26T00:00:00Z",
+       "email": "leon@gmail.com",
+       "specialReqs": "I need something to hang on all my mother fucking trophies baby... yeah I am the best",
+       "messageToHost": null,
+       "contactPhone": "+57251892434"
+     },
+    "adminPricings": [
+      { "adminBkl": "AVbW_-f1cdE2ZW7EULtP",         
+        "adminPricing": "AVbW_-f1cdE2ZW7EULtP2016082960370734775",
+        "roomIds": ["231", "232"] },
+      { "adminBkl": "AVbW_-f1cdE2ZW7EULtP",         
+        "adminPricing": "AVbW_-f1cdE2ZW7EULtP2016082960355163462",
+        "roomIds": ["222", "230"] },
+      { "adminBkl": "AVbW9USbcdE2ZW7EULtN",         
+        "adminPricing": "AVbW9USbcdE2ZW7EULtN2016082959191154739",
+        "roomIds": ["116", "117"] },
+      { "adminBkl": "AVbW9USbcdE2ZW7EULtN",         
+        "adminPricing": "AVbW9USbcdE2ZW7EULtN2016082959173851814",
+        "roomIds": ["114", "115"] }
+     ]
+}'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ + Bookable does not match property.
+ + checkIn-checkOut greater than 30 nights.
+ + checkIn-checkOut less than 1 night.
+ + The list of assigned rooms is empty.
+ + The set of assigned rooms is not a subset of the total rooms of a bookable.
+ + checkIn greater than checkOut.
+ + checkIn less than current day.
+ + Bookable and property do not match.
+ + Assigne rooms set is not a subset of bookable's total rooms.
+ + Some sets of assigned rooms are not available for the reservation period.
+ + The reservation is made with more than 365 days of anticipation.
+ 
+ 
+-- 404 Not Found
+ + Property was not found.
+ + Bookable was not found.
+ + Some pricings in reservation where not found in their bookables.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 200 OK
+   Content-Type: application/json
+   
+{
+	"state": "Accepted",
+	"basicData": {
+		"contactPhone": "+57251892434",
+		"email": "leon@gmail.com",
+		"specialReqs": "I need something to hang on all my mother fucking trophies baby... yeah I am the best",
+		"lastName": "De leon",
+		"propId": "AVbW7yKccdE2ZW7EULtK",
+		"messageToHost": null,
+		"checkIn": "2016-12-15T00:00:00Z",
+		"byAdmin": true,
+		"name": "Oscar",
+		"checkOut": "2016-12-26T00:00:00Z"
+	},
+	"absence": [
+		"2016-12-16T00:00:00Z",
+		"2016-12-26T00:00:00Z"
+	],
+	"expiration": "2016-09-10T17:11:55.12053Z",
+	"guestArrived": false,
+	"reservId": 54,
+	"resCode": "sz01cj21c",
+	"submitted": "2016-09-09T17:11:55.12053Z"
+}   
+
+
+
+
+
+5) Get a Property's reservations according to optional filters:
+
+- Request:
+
+curl -iXGET -H "Authorization: Bearer <token>" 'localhost:8081/property/reservations/<bookableId>?from=0&size=3&state=accepted'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + Property was not found.
+ + User was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + Property and admin don't match.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+   [<reservation>]
+
+
+
+
+
+
+6) Get User reservations according to optional filters:
+
+- Request:
+
+curl -iXGET -H "Authorization: Bearer <token>" 'localhost:8081/userReservs?state=rejected&from=0&size=10'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + User was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+   [<reservation>]
+
+
+
+
+7) Get information about Reservations in a Bookable:
+
+- Request:
+
+curl -iXGET 'localhost:8081/bookable/reservationInfo/<bookableId>?from=0&size=10&state=accepted' -H "Authorization: Bearer <token>" 
+
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+  
+ 
+-- 404 Not Found
+ + Bookable was not found.
+ + Property was not found.
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 200 OK
+   Content-Type: application/json
+   [<reservInfo>]
+
+
+
+
+8) Accept a user reservation
+
+
+If the optional message is not valid a null will be stored.
+
+- Request:
+
+curl -iXPOST localhost:8081/reservation/accept/52 -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{
+	"message": "You are very welcome Marco Asensio and everything you want we will do our best to hep you.",
+	"assignments": [ { "reservedPricing": 102, "rooms": ["140", "141"] },
+	                 { "reservedPricing": 103, "rooms": ["142", "143"] },
+	                 { "reservedPricing": 104, "rooms": ["203", "221"] },
+		             { "reservedPricing": 105, "rooms": ["240", "241"] } ] }'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ + Bookable does not match property.
+ + The reservation has expired.
+ + The reservation is not in Pending state.
+ + The reservation was not made by an a user.
+ + Some pricings were not found.
+ + Empty sets of assigned rooms.
+ + Set of assigned rooms not subset of bookable's total rooms.
+ + Bookable and property do not match.
+ + Some sets of assigned rooms are not available for the reservation period.
+ 
+ 
+-- 404 Not Found
+ + Property was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Reservation property and admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 201 OK
+   Content-Type: application/json
+   {
+	"subject": "Accepted",
+	"notified": "2016-09-09T18:49:28.906905Z",
+	"reservation": 55,
+	"notifId": 12,
+	"messageToGuest": "You are very welcome Lucas Vasquez and everything you want we will do our best to help you."
+   }
+
+
+
+
+9) Reject a User reservation
+
+If the message is not valid a null will be stored.
+
+
+- Request: 
+
+curl -iXPOST localhost:8081/reservation/reject/48 -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '"I have to reject your reservation because I do not like you at all"'
+
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ + Bookable does not match property.
+ + The reservation has expired.
+ + The reservation is not in Pending state.
+ + The reservation was not made by an a user.
+ + The reservation has been marked as arrived.
+ 
+-- 404 Not Found
+ + Property was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Reservation property and admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 201 OK
+   Content-Type: application/json
+   {
+	"subject": "Rejected",
+	"notified": "2016-09-09T18:49:28.906905Z",
+	"reservation": 55,
+	"notifId": 12,
+	"messageToGuest": "I have to reject your reservation because I do not like you at all"
+   }
+
+
+
+
+10) Mark a user reservation as Absent
+
+If the optional message is not valid a null will be stored.
+
+- Request
+
+curl -iXPOST localhost:8081/reservation/user/absent/42 -H "Authorization: Bearer <token>"  -d '"you did not showed up so you are absent... damn it!!!"'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ + Bookable does not match property.
+ + The reservation is not in Accepted state.
+ + The reservation was not made by a user.
+ + The reservation has been marked as arrived.
+ + The currentDate is not withing a valid absence interval.
+ 
+-- 404 Not Found
+ + Property was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Reservation property and admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 201 OK
+   Content-Type: application/json
+   {
+	"subject": "Absent",
+	"notified": "2016-09-09T18:49:28.906905Z",
+	"reservation": 55,
+	"notifId": 12,
+	"messageToGuest": "you did not showed up so you are absent... damn it!!!"
+   }
+
+
+
+
+11) Mark a reservation made by an Admin as Absent
+
+
+- Request:
+
+curl -iXPUT localhost:8081/reservation/admin/absent/40 -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ + Bookable does not match property.
+ + The reservation is not in Accepted state.
+ + The reservation was not made by an an admin.
+ + The reservation has been marked as arrived.
+ + The currentDate is not withing a valid absence interval.
+ 
+-- 404 Not Found
+ + Property was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Reservation property and admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 200 OK
+
+
+
+12) Get a User's Notifications
+
+- Request:
+
+curl -iXGET 'localhost:8081/userNotifs?from=0&size=20' -H "Authorization: Bearer <tokenId>" 
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+-- 404 Not Found
+ + User was not found.
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ 
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+   [<notifications>]
+
+
+
+
+
+
+13) Get a user's notification
+
+- Request:
+
+curl -iXGET localhost:8081/userNotif/6 -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+-- 404 Not Found
+ + Reservation was not found.
+ + User was not found.
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + User and notification do not match.
+ 
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+   {
+	"subject": "Absent",
+	"notified": "2016-09-09T18:49:28.906905Z",
+	"reservation": 55,
+	"notifId": 12,
+	"messageToGuest": "you did not showed up so you are absent... damn it!!!"
+   }
+
+
+
+14) Get a Reservation by reservationCode
+
+- Request: 
+
+curl -iXGET localhost:8081/reservation -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '"az27yo17c"'
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+{
+	"state": "Accepted",
+	"basicData": {
+		"contactPhone": "+57251892434",
+		"email": "florentino@gmail.com",
+		"specialReqs": null,
+		"lastName": "Florentino",
+		"propId": "AVbW7yKccdE2ZW7EULtK",
+		"messageToHost": null,
+		"checkIn": "2016-09-05T00:00:00Z",
+		"byAdmin": true,
+		"name": "Perez",
+		"checkOut": "2016-09-20T00:00:00Z"
+	},
+	"absence": [
+		"2016-09-06T00:00:00Z",
+		"2016-09-20T00:00:00Z"
+	],
+	"numNights": 15
+	"expiration": "2016-09-01T15:56:21Z",
+	"guestArrived": false,
+	"reservId": 23,
+	"resCode": "xh42ape6",
+	"submitted": "2016-08-31T15:56:21Z"
+}
+ 
+
+
+
+15) Change the guestArrived state to True 
+
+
+- Request
+
+curl -iXPUT localhost:8081/reservation/guestArrived/<reservationId> -H "Authorization: Bearer <token>"
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ + The reservation is already marked as arrived.
+ + The reservation state is not Accepted.
+ + currentDate is not greater or equal to checkIn.
+ 
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 200 OK
+
+
+
+
+16) Get all reservations of a Property which can be set to Absent.
+
+
+- Request:
+
+curl -iXGET localhost:8081/reservations/validAbsent/<propertyId>?from=0&size=10 -H "Authorization: Bearer <token>" 
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+
+ 
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property an admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+-- 200 OK  
+   Content-Type: application/json
+   [<reservation>]
+
+
+
+17) Find availability for a Reservation
+
+
+- Request
+
+curl -iXGET localhost:8081/reservation/availableRooms/53 -H "Authorization: Bearer <token>"
+
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+ + There was an error while creating Calendars.
+ + There was an error while creating reports.
+
+
+-- 200 OK
+   Content-Type: application/json
+   [
+	{
+		"availableRooms": [ "150", "151" ],
+		"totalRooms": [ "112", "113", "114", "115", "116", "117", "140", "141", "142", "143", "150", "151" ],
+		"reservedRooms": [ "112", "113", "114", "115", "116", "117", "140", "141", "142", "143" ],
+		"bookable": "AVbW9USbcdE2ZW7EULtN"
+	},
+	{
+		"availableRooms": [ "251" ],
+		"totalRooms": [ "201", "202", "203", "221", "222", "230", "231", "232", "240", "241", "250", "251" ],
+		"reservedRooms": [ "201", "202", "203", "221", "222", "230", "231", "232", "240", "241", "250" ],
+		"bookable": "AVbW_-f1cdE2ZW7EULtP"
+	}
+]
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+-- Cancellation 1
+
+
+curl -iXPOST localhost:8081/user/cancellation/16 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqdWFubWFzIiwianRpIjoiMjAxNi0wOS0yNyAxNzowMjoyOC4wNDc0OTcgVVRDXzEyIiwiZXhwIjoxNDc1Njg2OTQ4LCJpc3MiOiJkZXN0aW5vc0lPIEFQSSIsInVzZXJJZCI6MTIsImlhdCI6MTQ3NDk5NTc0OCwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.o8ysJkAX7prg6ZnYVEvXjWpL6jabUkgptv8TW2-c1BE" -H "Content-Type: application/json" -d ' 
+      { "reservedPricing": 35,         
+        "numRooms": 1 }'
+        
+        
+
+-- Cancellation 2
+
+
+curl -iXPOST localhost:8081/user/cancellation/15 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqdWFubWFzIiwianRpIjoiMjAxNi0wOS0yNyAxNzowMjoyOC4wNDc0OTcgVVRDXzEyIiwiZXhwIjoxNDc1Njg2OTQ4LCJpc3MiOiJkZXN0aW5vc0lPIEFQSSIsInVzZXJJZCI6MTIsImlhdCI6MTQ3NDk5NTc0OCwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.o8ysJkAX7prg6ZnYVEvXjWpL6jabUkgptv8TW2-c1BE" -H "Content-Type: application/json" -d ' 
+      { "reservedPricing": 34,         
+        "numRooms": 1 }'

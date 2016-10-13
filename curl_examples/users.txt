@@ -1,0 +1,134 @@
+-- User 1 --
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE
+
+curl -iXPOST localhost:8081/user -H "Content-Type: application/json" -d '{
+     "basicData": {
+       "profileName": "biggiesmalls",
+       "name": "Christopher George",
+       "lastName": "Wallace",
+       "birthDate": "1972-08-10T00:00:00Z",
+       "countryCode": "US",
+       "gender": "Male",           
+       "mainEmail": "biggiesmalls@gmail.com",
+       "secondEmail": "bigPopa@gmail.com",
+       "phoneNumber": "+1309983212"      
+     },
+     "password": "abcd1992"
+}'
+
+
+-- User 2 --
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJwZWFjZU5sb3ZlIiwianRpIjoiMjAxNi0wOS0yNyAxNjo1OToxNS4zNjE2MDUgVVRDXzgiLCJleHAiOjE0NzU2ODY3NTUsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo4LCJpYXQiOjE0NzQ5OTU1NTUsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.2XjAKlznWCaCwofqgI0DKtrJ2d23t-ui5qFp6A4XabQ
+
+curl -iXPOST localhost:8081/user -H "Content-Type: application/json" -d '{
+     "basicData": {
+       "profileName": "peaceNlove",
+       "name": "Lil",
+       "lastName": "Wayne",
+       "birthDate": "1985-08-10T00:00:00Z",
+       "countryCode": "US",
+       "gender": "Male",           
+       "mainEmail": "lylwayne@gmail.com",
+       "secondEmail": "peaceNlove@gmail.com",
+       "phoneNumber": "+1302933412"      
+     },
+     "password": "abcd1993"
+}'
+
+
+
+
+
+
+-- User 3 --
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJuaWNreU0iLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAwOjE3LjA3NjA0MSBVVENfOSIsImV4cCI6MTQ3NTY4NjgxNywiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjksImlhdCI6MTQ3NDk5NTYxNywiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.fWVNz9GrJx2aWzOYkFUzk3sryW4tMuCjWjsT0K0qYIQ
+
+curl -iXPOST localhost:8081/user -H "Content-Type: application/json" -d '{
+     "basicData": {
+       "profileName": "nickyM",
+       "name": "Nicky",
+       "lastName": "Minaj",
+       "birthDate": "1987-08-10T00:00:00Z",
+       "countryCode": "US",
+       "gender": "Female",           
+       "mainEmail": "nickyminaj@gmail.com",
+       "secondEmail": "twerktwerk@gmail.com",
+       "phoneNumber": "+1332930412"      
+     },
+     "password": "abcd1994"
+}'
+
+
+
+
+
+-- User 4 --
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4
+
+curl -iXPOST localhost:8081/user -H "Content-Type: application/json" -d '{
+     "basicData": {
+       "profileName": "jrodriguez10",
+       "name": "James",
+       "lastName": "Rodriguez",
+       "birthDate": "1991-08-10T00:00:00Z",
+       "countryCode": "CO",
+       "gender": "Male",           
+       "mainEmail": "jrodriguez10@gmail.com",
+       "secondEmail": "rmadrid@gmail.com",
+       "phoneNumber": "+57332930412"      
+     },
+     "password": "abcd1995"
+}'
+
+
+
+
+
+-- User 5 --
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJzaWVtcHJldml2ZXMiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjQ4LjQ3NjQ4MiBVVENfMTEiLCJleHAiOjE0NzU2ODY5MDgsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMSwiaWF0IjoxNDc0OTk1NzA4LCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.a4c0GtP23EqyDCDvX-hTWx0Yc2Id7m5hXPTMcvXs0o0
+
+curl -iXPOST localhost:8081/user -H "Content-Type: application/json" -d '{
+     "basicData": {
+       "profileName": "siemprevives",
+       "name": "Carlos",
+       "lastName": "Vives",
+       "birthDate": "1978-08-10T00:00:00Z",
+       "countryCode": "CO",
+       "gender": "Male",           
+       "mainEmail": "carlosvives@gmail.com",
+       "secondEmail": "vivesSiempre@gmail.com",
+       "phoneNumber": "+57331930412"      
+     },
+     "password": "abcd1996"
+}'
+
+
+
+
+
+-- User 6 --
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqdWFubWFzIiwianRpIjoiMjAxNi0wOS0yNyAxNzowMjoyOC4wNDc0OTcgVVRDXzEyIiwiZXhwIjoxNDc1Njg2OTQ4LCJpc3MiOiJkZXN0aW5vc0lPIEFQSSIsInVzZXJJZCI6MTIsImlhdCI6MTQ3NDk5NTc0OCwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.o8ysJkAX7prg6ZnYVEvXjWpL6jabUkgptv8TW2-c1BE
+
+curl -iXPOST localhost:8081/user -H "Content-Type: application/json" -d '{
+     "basicData": {
+       "profileName": "juanmas",
+       "name": "Juan Manuel",
+       "lastName": "Santos",
+       "birthDate": "1958-08-10T00:00:00Z",
+       "countryCode": "CO",
+       "gender": "Male",           
+       "mainEmail": "juanma@gmail.com",
+       "secondEmail": "santosM@gmail.com",
+       "phoneNumber": "+57331930412"      
+     },
+     "password": "abcd1997"
+}'
+
+
+

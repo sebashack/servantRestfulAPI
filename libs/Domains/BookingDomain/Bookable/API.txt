@@ -1,0 +1,1327 @@
+Bookable Rest API
+
+
+
+1) Get a Bookable
+
+- Request: 
+
+curl -iXGET localhost:8081/bookable/<bookableId>
+
+
+- Errors
+
+-- 404 Not Found
+ + Bookable was not found.
+
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+{
+	"status": "Unlisted",
+	"basicData": {
+		"esDesc": "Una estupenda habitación para parejas.",
+		"enDesc": "An amazing room for couples you have to come with you family soon!",
+		"propId": "AVapd-TxXBIcrwIawKYJ",
+		"bklSpecs": {
+			"roomSize": "25x25",
+			"bedNum": 1,
+			"name": "Couple Room",
+			"amenities": [
+				"cable tv",
+				"air conditioning",
+				"heating",
+				"room service",
+				"bathtub"
+			],
+			"bedType": "double bed"
+		},
+		"roomIds": [
+			"201",
+			"202",
+			"203"
+		],
+		"maxOccu": 3
+	},
+	"countryCode": "US",
+	"bklId": "AVa0SbWZvqMEfj20KWfy",
+	"pricings": [
+		{
+			"priData": {
+				"roomDiscount": 10,
+				"nightPrice": 50,
+				"occupancy": 2,
+				"conditions": [
+					"No Children",
+					"No Cancellation",
+					"No Pets"
+				]
+			},
+			"priId": "atk123"
+		},
+		{
+			"priData": {
+				"roomDiscount": 20,
+				"nightPrice": 70,
+				"occupancy": 1,
+				"conditions": [
+					"No Children",
+					"Free Cancellation",
+					"Pets Allowed"
+				]
+			},
+			"priId": "asd345"
+		}
+	]
+}
+
+
+
+
+
+2) Create a Bookable
+
+- Request:
+
+curl -iXPOST localhost:8081/bookable -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{     
+    "propId": "ah3d7123d",
+    "bklSpecs": {
+       "name": "Standard Room",         
+       "roomSize": "20x20",
+       "bedType": "double bed",
+       "bedNum": 1,
+       "amenities": ["Cable TV", "Room Service", "Heating", "Air Conditioning"]
+     },
+     "esDesc": "Una gran habitación para una pareja.",
+     "enDesc": "A great room for two people.",
+     "maxOccu": 2,
+     "roomIds": ["101","102","103"]      
+}'
+
+
+Note that empty lists of amenities and roomIds are allowed. RoomSize, bedType and descriptions (esDesc and enDesc) are optional,
+so in case of invalid values for these fields a null is stored in DB.
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad maximum occupancy:  A valid maxOccupancy must be greater than 0 but less than or equal to 15.
+ + Bad list of room ids: A valid list of roomIds must not be greater than 100  elements, and each element 
+   must be less than 15 characters long. Empty Strings are not allowed. A list of roomIds can be empty.
+ + Bad bookable name: Bookable names must be greater than 4 characters and less than 31.
+ + Bad number of beds: A valid number of beds must be greater than 0 but less than or equal to 15.
+ + Bad list of amenities: A valid list of amenities must not be greater than 50 elements, and each element must 
+   be less than 50 characters long. Empty Strings are not allowed.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+
+- Successful Response 
+
+-- 201 OK
+   Content-Type: application/json
+   
+   {
+	"status": "Unlisted",
+	"basicData": {
+		"esDesc": "Una estupenda habitación para parejas.",
+		"enDesc": "An amazing room for couples you have to come with you family soon!",
+		"propId": "AVapd-TxXBIcrwIawKYJ",
+		"bklSpecs": {
+			"roomSize": "25x25",
+			"bedNum": 1,
+			"name": "Couple Room",
+			"amenities": [
+				"cable tv",
+				"air conditioning",
+				"heating",
+				"room service",
+				"bathtub"
+			],
+			"bedType": "double bed"
+		},
+		"roomIds": [
+			"201",
+			"202",
+			"203"
+		],
+		"maxOccu": 3
+	},
+	"countryCode": "US",
+	"bklId": "AVa1fI4bgGPTUhlT-TCL",
+	"pricings": []
+}
+   
+   
+   
+   
+
+3) listing a Bookable
+
+- Request: 
+
+curl -iXPUT localhost:8081/bookable/list/<bookableId> -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + The bookable to list has no images.
+ + The bookable to list has no roomIds.
+ + The bookable to list has no descriptions.
+ + The bookable to list has no pricings.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+4) unlisting a Bookable
+
+
+curl -iXPUT localhost:8081/bookable/unlist/<bookableId> -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+5) delete a Bookable
+
+- Request:
+  curl -iXDELETE localhost:8081/bookable/AVdAf_8T88A8iqhIB58j -H "Authorization: Bearer <token>"-H "Content-Type: application/json" -d '{     
+    "profNameOrEmail": "biggiesmalls",
+    "password": "abcd1992"
+}'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+ + Password mismatch.
+ + Profile name or main email does not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while deleting Bookable
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+6-7) Update a Bookable's description (either in english or in spanish):
+
+- Request:
+
+curl -iXPUT localhost:8081/bookable/descriptionES/<bookableId> -H "Authorization: Bearer <token>" -H "Content-Type: text/plain" -d '"<string>"'
+
+curl -iXPUT localhost:8081/bookable/descriptionEN/<bookableId> -H "Authorization: Bearer <token>" -H "Content-Type: text/plain" -d '"<string>"'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad description: A valid description must have at 31 characters but less than 2000.  
+
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+8) Update a Bookable's specs:
+
+- Request:
+
+curl -iXPUT localhost:8081/bookable/specs/<bookableId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{     
+     "name": "Simple Room",         
+     "roomSize": "30x30",
+     "bedType": null,
+     "bedNum": 1,
+     "amenities": ["cable tv", "room service", "heating", "air conditioning", "room service"]  
+}'
+
+Note that empty lists of amenities are allowed. RoomSize and bedType and are optional, so in case of invalid values for these fields 
+a null is stored in DB.
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad bookable name: Bookable names must be greater than 4 characters and less than 31.
+ + Bad number of beds: A valid number of beds must be greater than 0 but less than or equal to 15.
+ + Bad list of amenities: A valid list of amenities must not be greater than 50 elements, and each element must 
+   be less than 50 characters long. Empty Strings are not allowed.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+9) Update a Bookable's Max Occupancy:
+
+- Request: 
+
+curl -iXPUT localhost:8081/bookable/maxOccupancy/<bookableId>/<max_occupancy: Int> -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Invalid MaxOccupancy: A valid maxOccupancy must be greater than 0 but less than or equal to 15. Also
+   if the maximum occupancy is less than the occupancy of some pricing, that maxOccupancy is invalid.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+10) Add room codes to a Bookable:
+
+- Request: 
+
+
+curl -iXPUT localhost:8081/bookable/addRooms/<bookableId>  -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '[
+  "100",
+  "101",
+  "102"
+]'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad list of room ids: A valid list of roomIds must not be greater than 100  elements, and each element 
+   must be less than 15 characters long. Empty Strings are not allowed. A list of roomIds can be empty.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+11) Remove room codes from a Bookable:
+
+- Request: 
+
+
+curl -iXPUT localhost:8081/bookable/removeRooms/<bookableId>  -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '[
+  "100",
+  "101",
+  "102"
+]'
+
+Note that if it happens that all roomIds have been removed from the Bookable, then that Bookable will be automatically 
+unlisted.
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad list of room ids: A valid list of roomIds must not be greater than 100  elements, and each element 
+   must be less than 15 characters long. Empty Strings are not allowed. A list of roomIds can be empty.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+12) Add a Pricing to a Bookable:
+
+- Request
+
+curl -iXPUT localhost:8081/bookable/addPricing/<bookableId> -H "Authorization: Bearer" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children"],
+     "nightPrice": 690000,
+     "roomDiscount": 15  
+}'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad occupancy: The occupancy must be greater than 0 and less than the maxOccupancy of the bookable.
+ + Bad list of conditions: list of non-empty conditions which is less than 20 elements and each element is less 
+   than 350 characters
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+13) Edit a Bookable's Pricing
+
+- Request: 
+
+
+
+curl -iXPUT localhost:8081/bookable/editPricing/<bookableId>/<pricingId> -H "Authorization: Bearer" -H "Content-Type: application/json" -d '{     
+     "occupancy": 2,         
+     "conditions": ["Breakfast included", "50% Cancellation", "No children"],
+     "nightPrice": 690000,
+     "roomDiscount": 15  
+}'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad occupancy: The occupancy must be greater than 0 and less than the maxOccupancy of the bookable.
+ + Bad list of conditions: list of non-empty conditions which is less than 20 elements and each element is less 
+   than 350 characters
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+
+14) Remove a Bookable's Pricing
+
+- Request: 
+
+curl -iXPUT localhost:8081/bookable/removePricing/<bookableId>/<pricingId> -H "Authorization: Bearer <token>"
+
+
+Note that if it happends that all bookable's pricings are removed, it will be automatically unlisted.
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+
+15) Get a Property's Bookables
+
+- Request: 
+
+curl -iXGET localhost:8081/property/bookables/<propertyId>
+
+
+-- 404 Not Found
+ + Property was not found.
+
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+   [<bookable>]
+
+
+
+
+
+
+16) Get information about the availability of all bookables of a given Property
+
+- Request:
+
+curl -iXGET localhost:8081/property/AvBookables/<propertyId> -H "Content-Type: application/json" -d '{
+    "checkIn": "2016-10-19T00:00:00Z",
+    "checkOut": "2016-10-30T00:00:00Z"
+    }'
+
+    
+-- 404 Not Found
+ + Property was not found.
+
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+ + There was an error while creating calendars.
+ + There was an error while creating reports.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+   [
+	{
+		"searchResult": {
+			"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+			"availableUnits": 9,
+			"meanScore": 2.5,
+			"propertyType": "hotel",
+			"propertyName": "Hotel California",
+			"bookable": <bookable> 
+	    },
+		"bklImgIds": [
+			"AVdAf_8T88A8iqhIB58j016091923433422671"
+		]
+	},
+	{
+		"searchResult": {
+			"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+			"availableUnits": 9,
+			"meanScore": 2.5,
+			"propertyType": "hotel",
+			"propertyName": "Hotel California",
+			"bookable": <bookable>		
+		},
+		"bklImgIds": [
+			"AVdAlqfj88A8iqhIB58m016091923606253551"
+		]
+	},
+	{
+		"searchResult": {
+			"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+			"availableUnits": 9,
+			"meanScore": 2.5,
+			"propertyType": "hotel",
+			"propertyName": "Hotel California",
+			"bookable": <bookable>,
+		"bklImgIds": [
+			"AVc5W85ukAmF6EAZ30l2016091923293751291"
+		]
+	}
+]
+
+
+
+
+
+17) Get Bookables together with available units through a Basic Search:
+
+- Request:
+
+curl -iXGET 'localhost:8081/bookables/basicSearch?from=0&size=15' -H "Content-Type: application/json" -d '{ 
+     "country": "CO",         
+     "guestNum": 5,
+     "destination": "Barranquilla, Atlantico",
+     "checkInOut": {
+       "checkIn": "2016-10-19T00:00:00Z",
+       "checkOut": "2016-10-30T00:00:00Z"
+     },
+     "numRooms": 3
+}'
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+ + There was an error while creating calendars.
+ + There was an error while creating reports.
+ 
+  
+
+-- 200 OK
+   Content-Type: application/json
+   [
+	{
+		"availableUnits": 3,
+		"meanScore": 5.4,
+		"propertyType": "hotel",
+		"propertyName": "Hotel California",
+		"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+		"bookable": <bookable>,
+	{
+		"availableUnits": 3,
+		"meanScore": 6.7,
+		"propertyType": "hotel",
+		"propertyName": "Hotel California",
+		"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+		"bookable": <bookable>
+	},
+	{
+		"availableUnits": 8,
+		"meanScore": 4.4,
+		"propertyType": "hotel",
+		"propertyName": "Hotel California",
+		"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+		"bookable": <bookable>		
+	}
+  ] 
+
+
+18) Get Bookables together with available units through an Advanced Search:
+
+- Request:
+  curl -iXGET 'localhost:8081/bookables/advancedSearch?from=0&size=12' -H "Content-Type: application/json" -d '{
+	"basicSearch": {
+		"country": "CO",
+		"guestNum": 2,
+		"destination": "Antioquia, Medellin",
+		"checkInOut": {
+			"checkIn": "2016-10-19T00:00:00Z",
+			"checkOut": "2016-10-30T00:00:00Z"
+		},
+		"numRooms": 2
+	},
+	"priceRange": {
+		"lowerPrice": 100000,
+		"upperPrice": 200000
+	},
+	"discount": 20,
+	"propType": hotel,
+	"propFacilities": [ 
+	    "parking",
+		"fitness center",
+		"wifi",
+		"heating",
+		"air conditioning",
+		"sauna",
+		"bar",
+		"spanish",
+		"english"
+	],
+	"bklAmenities": [
+		"air conditioning",
+		"bathtub",
+		"heating",
+		"cable tv",
+		"wifi"
+	],
+	"beds": 1
+   }'
+
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+ + There was an error while creating calendars.
+ + There was an error while creating reports.
+ 
+
+-- 200 OK
+   Content-Type: application/json
+   [
+	{
+		"availableUnits": 3,
+		"meanScore": 5.4,
+		"propertyType": "hotel",
+	    "propertyName": "Hotel California",
+		"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+		"bookable": <bookable>,
+	{
+		"availableUnits": 3,
+		"meanScore": 6.7,
+		"propertyType": "hotel",
+		"propertyName": "Hotel California",
+		"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+		"bookable": <bookable>
+	},
+	{
+		"availableUnits": 8,
+		"meanScore": "4.8",
+		"propertyType": "hotel",
+		"propertyName": "Hotel California",
+		"mainPropImgId": "AVc5GL-1kAmF6EAZ30lp016092358944275699",
+		"bookable": <bookable>		
+	}
+  ] 
+
+
+
+19) Upload Bookable's images.
+
+- Request:
+
+curl -iXPOST localhost:8081/bookable/postImg/<bookableId> -H "Authorization: Bearer <token>"-H "Content-Type: image/jpeg" --data-binary "@black-goku.jpg"
+
+
+
+
+
+20) Get all imgIds of a Property
+
+- Request:
+
+curl -iXGET localhost:8081/bookable/imageIds/<bookableId>
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+21) Delete a Bookable's image
+
+- Request:
+
+curl -iXDELETE localhost:8081/bookable/deleteImg/<bookableId>/<imgId> -H "Authorization: Bearer <token>"
+
+Note that if it happens that all bookable's images are removed, it will be automatically unlisted.
+
+ 
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+   {
+	"totalUnits": [
+		"C1",
+		"C2",
+		"C3",
+		"C4",
+		"C5",
+		"C6",
+		"C7",
+		"C8"
+	],
+	"reservedUnits": [
+		"C3",
+		"C4",
+		"C5"
+	],
+	"remainingUnits": [
+		"C1",
+		"C2",
+		"C6",
+		"C7",
+		"C8"
+	]
+}
+
+
+
+22) Get the report of a Bookable in a period of time.
+
+
+- Request:
+  curl -iXGET localhost:8081/bookable/period/AVdA6rpE88A8iqhIB581 -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{
+    "from": "2016-10-27T00:00:00Z",
+    "to": "2016-10-30T00:00:00Z"
+    }'
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+ + There was an error while creating calendar.
+ + There was an error while creating report.
+ 
+ 
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+23) Get information of a Bookable's income  in a specific period of time.
+
+
+- Request:
+
+curl -iXGET localhost:8081/bookable/incomeInfo/<bookableId> -H "Authorization: Bearer <income>"-H "Content-Type: application/json" -d '{
+    "from": "2016-10-19T00:00:00Z",
+    "to": "2016-11-07T00:00:00Z"
+  }'
+
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 200 OK
+   Content-Type: application/json
+   {
+	"cancelledRooms": 3,
+	"period": {
+		"to": "2016-11-07T00:00:00Z",
+		"from": "2016-10-19T00:00:00Z"
+	},
+	"reservationIncome": 17388000,
+	"cancellationLoss": 8280000,
+	"reservedRooms": 6
+    }
+    
+    
+    
+
+
+24) Apply a discount to all pricings of a bookable
+
+- Request:
+
+curl -iXPUT localhost:8081/bookable/applyDiscount/<bookableId>/<disc:Int> -H "Authorization: Bearer <token>" 
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad discount: A valid discount is an integer between 0 and 100. 
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+25) Get a Property's available Bookables in a given period 
+
+- Request:
+  curl -iXGET localhost:8081/property/periodReport/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{
+    "from": "2016-10-19T00:00:00Z",
+    "to": "2016-10-30T00:00:00Z"
+    }'
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin was not found.
+ + Property was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+ + There was an error while creating calendar.
+ + There was an error while creating report.
+ 
+ 
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+   [
+	{
+		"reportBkl": <bookable>,
+		"periodReport": {
+			"totalUnits": [
+				"C1",
+				"C2",
+				"C3",
+				"C4",
+				"C5",
+				"C6",
+				"C7",
+				"C8"
+			],
+			"reservedUnits": [
+				"C1",
+				"C2",
+				"C3",
+				"C4",
+				"C5"
+			],
+			"remainingUnits": [
+				"C6",
+				"C7",
+				"C8"
+			]
+		}
+	},
+	{
+		"reportBkl": <bookable>,
+		"periodReport": {
+			"totalUnits": [
+				"B1",
+				"B2",
+				"B3",
+				"B4",
+				"B5",
+				"B6",
+				"B7",
+				"B8"
+			],
+			"reservedUnits": [
+				"B1",
+				"B2",
+				"B3",
+				"B4",
+				"B5"
+			],
+			"remainingUnits": [
+				"B6",
+				"B7",
+				"B8"
+			]
+		}
+	},
+	{
+		"reportBkl": <bookable>,
+		"periodReport": {
+			"totalUnits": [
+				"A1",
+				"A2",
+				"A3",
+				"A4",
+				"A5",
+				"A6",
+				"A7",
+				"A8"
+			],
+			"reservedUnits": [],
+			"remainingUnits": [
+				"A1",
+				"A2",
+				"A3",
+				"A4",
+				"A5",
+				"A6",
+				"A7",
+				"A8"
+			]
+		}
+	}
+]
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

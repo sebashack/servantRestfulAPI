@@ -1,0 +1,115 @@
+Review Rest API
+
+
+
+1) Get a property's reviews.
+
+- Request: 
+
+curl -iXGET 'localhost:8081/property/reviews/<propertyId>?from=0&size=10'
+
+
+- Successful response:
+
+-- 200 OK   
+   Content-Type: application/json
+   [<review>]
+
+
+
+
+2) Create a User Review
+
+- Request:
+
+curl -iXPOST localhost:8081/reservation/review/<reservationId> -H "Authorization: Bearer <tokenId>" -H "Content-Type: application/json" -d '{
+    "content": "I think it was an amazing place to stay with a very good service and pretty clean.",
+    "score": 7
+}
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad review content: A review content must have at least 80 characters but less than 1300.
+ + Bad review score: A review score must be a number between 1 and 10.
+
+-- 404 Not Found
+ + The user was not found.
+
+
+-- 401 Unauthorized
+ + The id encoded in the authentication token is not the same as the id of the user to be updated.
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+- Successful Response
+
+-- 201 Created   
+   Content-Type: application/json
+   {
+     "review": {
+        "score": 7,
+	    "content": "I think it was an amazing place to stay with a very good service and pretty clean."
+	  },
+	 "reservId": 10,
+	 "reviewDate": "2016-09-23T03:26:14.89215Z"
+   }
+
+
+
+
+3) Get a Reservation's Review
+
+- Request:
+curl -iXGET localhost:8081/reservation/review/<reservationId>
+
+
+- Errors
+
+-- 404 Not Found
+ + The reservation's review was not found.
+
+ 
+- Successful Response
+
+-- 200 Ok   
+   Content-Type: application/json
+   {
+     "review": {
+        "score": 7,
+	    "content": "I think it was an amazing place to stay with a very good service and pretty clean."
+	  },
+	 "reservId": 10,
+	 "reviewDate": "2016-09-23T03:26:14.89215Z"
+   }
+
+
+
+4) Get a User's reviews
+
+- Request:
+curl -iXGET 'localhost:8081/userReviews?from=0&size=10&userToken=<token>'
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 200 Ok   
+   Content-Type: application/json
+   [<review>]
+
+
+
+

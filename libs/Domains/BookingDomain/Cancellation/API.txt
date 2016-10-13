@@ -1,0 +1,211 @@
+Cancellation Rest API
+
+
+
+1) Get all cancellations related to a reservation
+
+- Request: 
+
+curl -iXGET localhost:8081/reservation/cancellations/<reservationId> -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+ + User and Reservation do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+-- 200 OK
+   Content-Type: application/json
+   [<cancellation>]
+   
+   
+   
+
+2) Create Cancellations as a User.
+
+Note: 
+
+- If the reservation is Pending, no cancellation is stored in DB. The only thing that                                                      
+  happens here is that the number of rooms in the reservedPricing is decremented. In                                                        
+  case that the reservedPricing comes to have a number of rooms equal to 0, it will be                                                      
+  deleted. Also, in case that the reservation comes to have 0 reservedPricings, that                                                        
+  reservation will be deleted.  
+  
+- If the reservation is Accepted, the expected behavior occurs: the cancelled rooms                                                         
+  are subtracted from the reservedPricing (both from the number of rooms and the assigned                                                   
+  rooms) and the cancellation is stored in DB.
+
+
+- Request:
+
+curl -iXPOST localhost:8081/user/cancellation/<reservationId> -H "Authorization: Bearer <token>'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.                                                            
+ + The number of cancelled units must be greater than 0 but less than the number of rooms 
+   in the reservedPricing.
+ + The state of the reservation must be Pending or Accepted.
+ + The reservation is either not expired or Accepted.
+ + The checkIn of the reservation is greater than the current date.
+ + The reservation must be one made by an ordinary user.
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + User and Reservation do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 201 OK
+   Content-Type: application/json
+{
+	"cancelledRooms": [
+		"201",
+		"202"
+	],
+	"cancData": {
+		"reservedPricing": 149,
+		"numRooms": 2
+	},
+	"byAdmin": false,
+	"reservId": 66,
+	"cancelled": "2016-09-16T16:41:32.439432Z"
+}
+
+
+
+
+3) Create Cancellations as an Admin.
+
+- Request:
+
+curl -iXPOST localhost:8081/admin/cancellation/<reservationId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d ' 
+      { "reservedPricing": 148,         
+        "numRooms": 2 }'
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.                                                            
+ + The number of cancelled units must be greater than 0 but less than the number of rooms 
+   in the reservedPricing.
+ + The state of the reservation must be Pending or Accepted.
+ + The reservation is either not expired or Accepted.
+ + The checkIn of the reservation is greater than the current date.
+ + The reservation must be one made by an admin.
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin don't match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+
+-- 201 OK
+   Content-Type: application/json
+{
+	"cancelledRooms": [
+		"201",
+		"202"
+	],
+	"cancData": {
+		"reservedPricing": 149,
+		"numRooms": 2
+	},
+	"byAdmin": true,
+	"reservId": 66,
+	"cancelled": "2016-09-16T16:41:32.439432Z"
+}
+
+
+
+
+4) Get Cancellations related to a property.
+
+- Request:
+
+curl -iXGET 'localhost:8081/property/cancellations/<propertyId>?from=1&size=2' -H "Authorization: Bearer <token>"
+
+
+
+- Errors
+
+-- 400 Bad Request
+ + Authentication token was not properly formated.
+ 
+ 
+-- 404 Not Found
+ + User was not found.
+ + Reservation was not found.
+ 
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + Property and admin do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing bookable in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+-- 200 OK
+   Content-Type: application/json
+   [<cancellation>]

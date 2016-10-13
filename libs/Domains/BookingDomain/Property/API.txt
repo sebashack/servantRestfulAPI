@@ -1,0 +1,601 @@
+Property Rest API
+
+
+
+1) Get a Property
+
+- Request: 
+
+curl -iXGET localhost:8081/property/<property_id>
+
+
+- Errors 
+
+-- 404 Not Found
+ + Property was not found.
+ 
+-- 500 Internal Server Error
+ + There was an error while parsing Elastic Search Response.
+
+
+
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+   
+{
+	"regDate": "2016-08-17T00:00:00Z",
+	"esDesc": "Un hotel para economico para pasar en familia.",
+	"enDesc": "A cheap hotel to stay with family.",
+	"rules": ["Pets Not Allowed"],
+	"mainImgId": fjkw38re0169834290,
+	"propId": "AVaaMUrOxlim0Dw4qd63",
+	"contactPhones": ["+573193651618"],
+	"propData": {
+		"propType": "hotel",
+		"location": {
+			"zipCode": "0902",
+			"address": "Rue 103",
+			"city": "Caen",
+			"countryCode": "FR",
+			"region": "Normandie"
+		},
+		"name": "Petit Hotel"
+	},
+	"facilities": ["parking", "air conditioning"]
+}   
+
+
+
+   
+
+2) Create a Property
+
+- Request:
+
+curl -iXPOST localhost:8081/property -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{
+     "name":"Petit Hotel",
+     "propType": "hotel",
+     "location": {
+       "countryCode": "FR",         
+       "region": "Normandie",
+       "city": "Caen",
+       "address": "Rue 103",
+       "zipCode": "0902"
+     } 
+}'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad property name: it must have some alphanumeric characters, be greater than 4 characters and less than 31.
+ + Bad property Type: it must have some alphanumeric characters, be greater than 4 characters and less than 21.
+ + Bad region: it must have some alphanumeric characters, be greater than 4 characters and less than 35.
+ + Bad city: it must have some alphanumeric characters, be greater than 4 characters and less than 35.
+ + Invalid country code: A valid country code must be a text according to ISO 3166
+  
+-- 404 Not Found
+ + The user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + User CanCreate count is equal to 0. Thus he cannot create properties.
+
+
+-- 500 Internal Server Error
+ + There was an error while indexing property in Elastic Search.
+ + There was an error while parsing Elastic Search Response.
+
+
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+
+{
+	"regDate": "2016-08-17T00:00:00Z",
+	"esDesc": null,
+	"enDesc": null,
+	"rules": [],
+	"mainImgId": null,
+	"propId": "AVaaMUrOxlim0Dw4qd63",
+	"contactPhones": [],
+	"propData": {
+		"propType": "hotel",
+		"location": {
+			"zipCode": "0902",
+			"address": "Rue 103",
+			"city": "Caen",
+			"countryCode": "FR",
+			"region": "Normandie"
+		},
+		"name": "Petit Hotel"
+	},
+	"facilities": []
+}
+
+
+
+
+
+
+
+5) Update a Property's location
+
+- Request:
+
+curl -iXPUT localhost:8081/property/location/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '{
+   "region": "Normandie",
+   "city": "Caen",
+   "address": "Rue 103",
+   "zipCode": "0902"
+}'
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad region: it must have some alphanumeric characters, be greater than 4 characters and less than 35.
+ + Bad city: it must have some alphanumeric characters, be greater than 4 characters and less than 35.
+ 
+ 
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The userId and the property do not match.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+
+
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+6) Update a Property's name
+
+- Request:
+
+curl -iXPUT localhost:8081/property/name/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '"LA Hotel"'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad property name: it must have some alphanumeric characters, be greater than 4 characters and less than 30.
+ 
+ 
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+7) Update a Property's type
+
+- Request: 
+
+curl -iXPUT localhost:8081/property/type/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: text/plain" -d 'hostal'
+
+- Errors 
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad property type: it must have some alphanumeric characters, be greater than 4 characters and less than 21.
+ 
+ 
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+8-9) Update a Property's description (either in english or in spanish):
+
+- Request:
+
+curl -iXPUT localhost:8081/property/descriptionES/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: text/plain" -d '<esDesc>'
+
+curl -iXPUT localhost:8081/property/descriptionEN/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: text/plain" -d '<esDesc>'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad property desciption: it must have some alphanumeric characters, be greater than 31 characters and less than 2000.
+ 
+ 
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+11-12) Update a Property's facilities and rules
+
+- Request:
+
+curl -iXPUT localhost:8081/property/facilities/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '[
+  "Parking",
+  "Gym",
+  "WiFi"
+]'
+
+curl -iXPUT localhost:8081/property/rules/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '[
+  "Pets not allowed",
+  "Kids over 6 years must pay",
+  "No Smoking"
+]'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad list of facilities or rules:  
+   ++ A valid list of facilities must not be greater than 200 elements, and each element must be less than 50 characters long. 
+      Empty Strings are not allowed.
+   ++ Validate a list of rules: A valid list of rules must not be greater than 50 elements, and each element must be
+      less than 301 characters long. Empty Strings are not allowed. 
+
+
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+13) Update a Property's list of contact phone numbers
+
+- Request:
+
+
+curl -iXPUT localhost:8081/property/contactPhones/<propertyId> -H "Authorization: Bearer <token>" -H "Content-Type: application/json" -d '[
+  "+573129348923",
+  "+57319356636",
+  "+57389231233"
+]'
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad list of phones: Validate a list of phones: A valid list of phones must not be greater than 10 elements, and each element must be
+   less than 30 characters long. Empty Strings are not allowed.
+
+
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+-- 200 OK
+
+
+
+
+
+14) Set an image as the Property's main image.
+
+- Request:
+
+curl -iXPUT localhost:8081/property/mainImg/<propertyId>/<imgId> -H "Authorization: Bearer <token>" 
+
+
+- Errors 
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad image id: a valid image Id cannot be empty and cannot have more than 40 characters.
+
+
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+-- 200 OK
+   
+
+
+
+
+15) Upload Propety's images.
+
+- Request:
+
+curl -iXPOST localhost:8081/property/postImg/<propId> -H "Authorization: Bearer <tokenId>" -H "Content-Type: image/jpeg" --data-binary "@some-img.jpg"
+
+
+- Errors 
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+ + Bad image id: a valid image Id cannot be empty and cannot have more than 40 characters.
+
+
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+-- 200 OK
+   Content-Type: application/json
+   <imgId : string>
+
+
+
+
+
+16) Delete a Property's image
+
+- Request:
+
+curl -iXDELETE localhost:8081/property/deleteImg/<propertyId>/<imgId> -H "Authorization: Bearer <token>"
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+
+-- 200 OK
+   
+
+
+
+17) Get all imgIds of a Property
+
+- Request:
+
+curl -iXGET localhost:8081/property/imageIds/<propertyId>
+
+
+- Succesful Response
+
+-- 200 OK
+   Content-Type: application/json
+   [<string>]
+
+
+
+
+
+18) Get all properties with pagination
+
+- Request:
+
+curl -iXGET localhost:8081/properties?from=0&size=10
+
+
+- Succesful Response
+
+-- 200 OK
+   Content-Type: application/json
+   [<property : object>]
+
+
+
+
+
+19) Get all Properties belonging to an admin user
+
+- Request
+
+curl -iXGET localhost:8081/properties/admin -H "Authorization: Bearer <token>"
+
+
+- Errors
+
+-- 400 Bad Request
+ + The authentication token was not properly formated.
+
+
+-- 404 Not Found
+ + The property's admin user was not found.
+
+
+-- 401 Unauthorized
+ + The authetication token has expired.
+ + The authentication token has an invalid signature.
+ + The admin has been blocked.
+ + The userId and the property do not match.
+
+
+-- 403 Forbidden
+ + No token was provided.
+ + The admin is blocked.
+ 
+- Successful Response 
+
+
+-- 200 OK
+   Content-Type: application/json
+   [<property : object>]
+   
+   
+
+
+
+
+20) Get all properties in a country that match the given query string, with pagination. The country must be specified
+    with the valid ISO3166 alpha-2 country code. The query string will be analyzed according to either a region name,
+    city name, property type or property name.
+
+- Request:
+
+curl -iXGET localhost:8081/properties/search/FR?queryString=Normandie%20Petit%20Hotel&from=0&size=10
+
+
+- Successful Response 
+
+
+-- 200 OK
+   Content-Type: application/json
+   [<property : object>]
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

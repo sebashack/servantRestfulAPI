@@ -1,0 +1,28 @@
+-- Example Reviews
+
+curl -iXPOST localhost:8081/reservation/review/8 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqdWFubWFzIiwianRpIjoiMjAxNi0wOS0xNyAxNjo1MToyMi40MzU3MjEgVVRDXzYiLCJleHAiOjE0NzQ4MjIyODIsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjo2LCJpYXQiOjE0NzQxMzEwODIsImF1ZCI6WyJkZXN0aW5vc0lPIEFQSSB1c2VycyJdfQ.tKbhKdL0oZ9dV0onLaOZQpog_RblconqiBM2b8C2Gmg" -H "Content-Type: application/json" -d '{
+    "content": "I think it was an amazing place to stay with a very good service and pretty clean.",
+    "score": 7
+}'
+
+
+
+curl -iXPOST localhost:8081/reservation/review/10 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJuaWNreU0iLCJqdGkiOiIyMDE2LTA5LTE3IDE2OjQxOjI2LjY0NDc1MSBVVENfMyIsImV4cCI6MTQ3NDgyMTY4NywiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjMsImlhdCI6MTQ3NDEzMDQ4NywiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.HNz7daKKrcmK5Jm1GgucSEZab5z_4s80aITZHs0yFP4" -H "Content-Type: application/json" -d '{
+    "content": "I think it was an awful place to stay and I would not come back to that horrible hotel again.",
+    "score": 2
+}'
+
+
+
+curl -iXPOST localhost:8081/reservation/review/11 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJuaWNreU0iLCJqdGkiOiIyMDE2LTA5LTE3IDE2OjQxOjI2LjY0NDc1MSBVVENfMyIsImV4cCI6MTQ3NDgyMTY4NywiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjMsImlhdCI6MTQ3NDEzMDQ4NywiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.HNz7daKKrcmK5Jm1GgucSEZab5z_4s80aITZHs0yFP4" -H "Content-Type: application/json" -d '{
+    "content": "I think it was an awful place to stay and I would not come back to that horrible hotel again.",
+    "score": 3
+}'
+
+
+curl -iXGET 'localhost:8081/property/reviews/AVc5GL-1kAmF6EAZ30lp?from=0&size=2'
+
+
+curl -iXGET localhost:8081/reservation/review/11
+
+curl -iXGET 'localhost:8081/userReviews?from=0&size=10&userToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJuaWNreU0iLCJqdGkiOiIyMDE2LTA5LTE3IDE2OjQxOjI2LjY0NDc1MSBVVENfMyIsImV4cCI6MTQ3NDgyMTY4NywiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjMsImlhdCI6MTQ3NDEzMDQ4NywiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.HNz7daKKrcmK5Jm1GgucSEZab5z_4s80aITZHs0yFP4'

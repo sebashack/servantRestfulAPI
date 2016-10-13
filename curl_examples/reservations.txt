@@ -1,0 +1,308 @@
+-- Reservation 1
+
+
+curl -iXPOST localhost:8081/admin/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+    "adminReservation": {
+       "propId": "AVdsn83ZBO20bzl3OFVt",         
+       "name": "Marcelo",
+       "lastName": "Viera",
+       "checkIn": "2016-09-28T00:00:00Z",
+       "checkOut": "2016-09-30T00:00:00Z",
+       "email": "marceloV@gmail.com",
+       "specialReqs": "I need a place to store my soccer balls because I love playing soccer a lot...",
+       "messageToHost": null,
+       "contactPhone": "+1251892434"
+     },
+    "adminPricings": [
+      { "adminBkl": "AVdtd2_uBO20bzl3OFV2",         
+        "adminPricing": "AVdtd2_uBO20bzl3OFV22016092782417334386",
+        "roomIds": ["101", "102"] },
+      { "adminBkl": "AVdtd2_uBO20bzl3OFV2",         
+        "adminPricing": "AVdtd2_uBO20bzl3OFV22016092782685374404",
+        "roomIds": ["103"] }
+     ]
+}'
+
+
+
+-- Reservation 2
+
+
+curl -iXPOST localhost:8081/admin/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"   -H "Content-Type: application/json" -d '{     
+    "adminReservation": {
+       "propId": "AVdsn83ZBO20bzl3OFVt",         
+       "name": "Cristiano",
+       "lastName": "Ronaldo",
+       "checkIn": "2016-09-28T00:00:00Z",
+       "checkOut": "2016-10-10T00:00:00Z",
+       "email": "cristianoR7@gmail.com",
+       "specialReqs": "I need a place to store my soccer balls because I am the best soccer player in the world...",
+       "messageToHost": null,
+       "contactPhone": "+1251892434"
+     },
+    "adminPricings": [
+      { "adminBkl": "AVdtd2_uBO20bzl3OFV2",         
+        "adminPricing": "AVdtd2_uBO20bzl3OFV22016092782685374404",
+        "roomIds": ["104", "105"] },
+      { "adminBkl": "AVdtd2_uBO20bzl3OFV2",         
+        "adminPricing": "AVdtd2_uBO20bzl3OFV22016092782695490103",
+        "roomIds": ["106", "107"] }
+     ]
+}'
+
+
+
+
+-- Reservation 3
+
+curl -iXPOST localhost:8081/admin/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE"     -H "Content-Type: application/json" -d '{     
+    "adminReservation": {
+       "propId": "AVdsn83ZBO20bzl3OFVt",         
+       "name": "Lucas",
+       "lastName": "Vasquez",
+       "checkIn": "2016-09-30T00:00:00Z",
+       "checkOut": "2016-10-16T00:00:00Z",
+       "email": "lucasVqz@gmail.com",
+       "specialReqs": "I need a place to store my soccer balls because I love playing with Real Madrid...",
+       "messageToHost": null,
+       "contactPhone": "+1251892434"
+     },
+    "adminPricings": [
+      { "adminBkl": "AVdtd2_uBO20bzl3OFV2",         
+        "adminPricing": "AVdtd2_uBO20bzl3OFV22016092782417334386",
+        "roomIds": ["101", "102"] },
+      { "adminBkl": "AVdtfbhgBO20bzl3OFV4",         
+        "adminPricing": "AVdtfbhgBO20bzl3OFV42016092783066703282",
+        "roomIds": ["201", "202"] }
+     ]
+}'
+
+
+
+
+-- Reservation 4
+
+
+curl -iXPOST localhost:8081/admin/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{     
+    "adminReservation": {
+       "propId": "AVdsn83ZBO20bzl3OFVt",         
+       "name": "Florentino",
+       "lastName": "Perez",
+       "checkIn": "2016-10-05T00:00:00Z",
+       "checkOut": "2016-10-15T00:00:00Z",
+       "email": "florentinoPrz@gmail.com",
+       "specialReqs": "I am the president of Real Madrid football club so I need the best service you can bring me.",
+       "messageToHost": null,
+       "contactPhone": "+1251892434"
+     },
+    "adminPricings": [
+      { "adminBkl": "AVdtfbhgBO20bzl3OFV4",         
+        "adminPricing": "AVdtfbhgBO20bzl3OFV42016092783066703282",
+        "roomIds": ["203"] },
+      { "adminBkl": "AVdtiVpfBO20bzl3OFV6",         
+        "adminPricing": "AVdtiVpfBO20bzl3OFV62016092783222677020",
+        "roomIds": ["301","302"] },
+      { "adminBkl": "AVdtiVpfBO20bzl3OFV6",         
+        "adminPricing": "AVdtiVpfBO20bzl3OFV62016092783251539715",
+        "roomIds": ["303","304"] }
+     ]
+}'
+
+
+
+
+-- Reservation 5
+
+curl -iXPOST localhost:8081/admin/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{     
+    "adminReservation": {
+       "propId": "AVdsxNWcBO20bzl3OFVy",         
+       "name": "Michael",
+       "lastName": "Heart",
+       "checkIn": "2016-10-01T00:00:00Z",
+       "checkOut": "2016-10-10T00:00:00Z",
+       "email": "myHeart@gmail.com",
+       "specialReqs": "This guest will need the best service we can afford in here because he is a person with high standards.",
+       "messageToHost": null,
+       "contactPhone": "+57451892434"
+     },
+    "adminPricings": [
+      { "adminBkl": "AVdtm-Z2BO20bzl3OFWA",         
+        "adminPricing": "AVdtm-Z2BO20bzl3OFWA2016092783970509594",
+        "roomIds": ["A1"] },
+      { "adminBkl": "AVdtoGxIBO20bzl3OFWB",         
+        "adminPricing": "AVdtoGxIBO20bzl3OFWB2016092784026128837",
+        "roomIds": ["B1"] },
+      { "adminBkl": "AVdtqb1DBO20bzl3OFWE",         
+        "adminPricing": "AVdtqb1DBO20bzl3OFWE2016092784116826951",
+        "roomIds": ["C1"] }
+     ]
+}'
+
+
+
+-- Reservation 6
+
+curl -iXPOST localhost:8081/admin/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{     
+    "adminReservation": {
+       "propId": "AVdsxNWcBO20bzl3OFVy",         
+       "name": "Alex",
+       "lastName": "Ferguson",
+       "checkIn": "2016-10-10T00:00:00Z",
+       "checkOut": "2016-10-15T00:00:00Z",
+       "email": "sirAlexF@gmail.com",
+       "specialReqs": "I am a very old man so I need your best service to make me feel comfortable.",
+       "messageToHost": null,
+       "contactPhone": "+1354892434"
+     },
+    "adminPricings": [
+      { "adminBkl": "AVdtm-Z2BO20bzl3OFWA",         
+        "adminPricing": "AVdtm-Z2BO20bzl3OFWA2016092783978726594",
+        "roomIds": ["A1"] },
+      { "adminBkl": "AVdtoGxIBO20bzl3OFWB",         
+        "adminPricing": "AVdtoGxIBO20bzl3OFWB2016092784077535918",
+        "roomIds": ["B1"] }
+     ]
+}'
+
+
+
+
+-- Reservation 7 
+
+curl -iXPOST localhost:8081/user/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqdWFubWFzIiwianRpIjoiMjAxNi0wOS0yNyAxNzowMjoyOC4wNDc0OTcgVVRDXzEyIiwiZXhwIjoxNDc1Njg2OTQ4LCJpc3MiOiJkZXN0aW5vc0lPIEFQSSIsInVzZXJJZCI6MTIsImlhdCI6MTQ3NDk5NTc0OCwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.o8ysJkAX7prg6ZnYVEvXjWpL6jabUkgptv8TW2-c1BE" -H "Content-Type: application/json" -d '{     
+    "userReservation": {
+       "propId": "AVdsxNWcBO20bzl3OFVy",         
+       "name": "Marco",
+       "lastName": "Asencio",
+       "checkIn": "2016-10-10T00:00:00Z",
+       "checkOut": "2016-10-15T00:00:00Z",
+       "email": "marcoASN@gmail.com",
+       "specialReqs": "I am a new talent in the world of soccer, so I need lots of soccer balls to train.",
+       "messageToHost": "Hi, I would like to stay at your nice Hotel because it looks so amazing. Yeah!!",
+       "contactPhone": "+573194567898"  
+     },
+    "userPricings": [
+      { "userBkl": "AVdtm-Z2BO20bzl3OFWA",         
+        "userPricing": "AVdtm-Z2BO20bzl3OFWA2016092783978726594",
+        "roomNum": 2  },
+      { "userBkl": "AVdtoGxIBO20bzl3OFWB",         
+        "userPricing": "AVdtoGxIBO20bzl3OFWB2016092784077535918",
+        "roomNum": 2 }
+     ]
+}'
+
+
+
+
+
+-- Reservation 8
+
+curl -iXPOST localhost:8081/user/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqdWFubWFzIiwianRpIjoiMjAxNi0wOS0yNyAxNzowMjoyOC4wNDc0OTcgVVRDXzEyIiwiZXhwIjoxNDc1Njg2OTQ4LCJpc3MiOiJkZXN0aW5vc0lPIEFQSSIsInVzZXJJZCI6MTIsImlhdCI6MTQ3NDk5NTc0OCwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.o8ysJkAX7prg6ZnYVEvXjWpL6jabUkgptv8TW2-c1BE" -H "Content-Type: application/json" -d '{     
+    "userReservation": {
+       "propId": "AVdsxNWcBO20bzl3OFVy",         
+       "name": "Henrique",
+       "lastName": "Casemiro",
+       "checkIn": "2016-10-01T00:00:00Z",
+       "checkOut": "2016-10-05T00:00:00Z",
+       "email": "casemiro@gmail.com",
+       "specialReqs": "I am one of the best mildfielders in real madrid so I need special service.",
+       "messageToHost": "Hi, I would like to stay at your nice Hotel because it looks so amazing.",
+       "contactPhone": "+573194567898"  
+     },
+    "userPricings": [
+      { "userBkl": "AVdtm-Z2BO20bzl3OFWA",         
+        "userPricing": "AVdtm-Z2BO20bzl3OFWA2016092783970509594",
+        "roomNum": 2 },
+      { "userBkl": "AVdtqb1DBO20bzl3OFWE",         
+        "userPricing": "AVdtqb1DBO20bzl3OFWE2016092784116826951",
+        "roomNum": 2 }
+     ]
+}'
+
+
+
+curl -iXPOST localhost:8081/reservation/accept/16 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" -H "Content-Type: application/json" -d '{
+	"message": "You are very welcome Henrique Casemiro and everything you want we will do our best to hep you.",
+	"assignments": [ { "reservedPricing": 35, "rooms": ["A2", "A3"] },
+	                 { "reservedPricing": 36, "rooms": ["C2","C3"] } ] }'
+
+
+
+
+
+-- Reservation 9
+
+curl -iXPOST localhost:8081/user/reservation -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqdWFubWFzIiwianRpIjoiMjAxNi0wOS0yNyAxNzowMjoyOC4wNDc0OTcgVVRDXzEyIiwiZXhwIjoxNDc1Njg2OTQ4LCJpc3MiOiJkZXN0aW5vc0lPIEFQSSIsInVzZXJJZCI6MTIsImlhdCI6MTQ3NDk5NTc0OCwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.o8ysJkAX7prg6ZnYVEvXjWpL6jabUkgptv8TW2-c1BE" -H "Content-Type: application/json" -d '{     
+    "userReservation": {
+       "propId": "AVdsxNWcBO20bzl3OFVy",         
+       "name": "Tony",
+       "lastName": "Kroos",
+       "checkIn": "2016-10-01T00:00:00Z",
+       "checkOut": "2016-10-10T00:00:00Z",
+       "email": "tonyK@gmail.com",
+       "specialReqs": "I am a very smart soccer player so I need a smart service in this hotel.",
+       "messageToHost": "Hi, I would like to stay at your nice Hotel because it looks so amazing.",
+       "contactPhone": "+573194567898"  
+     },
+    "userPricings": [
+      { "userBkl": "AVdtm-Z2BO20bzl3OFWA",         
+        "userPricing": "AVdtm-Z2BO20bzl3OFWA2016092783970509594",
+        "roomNum": 3 },
+      { "userBkl": "AVdtqb1DBO20bzl3OFWE",         
+        "userPricing": "AVdtqb1DBO20bzl3OFWE2016092784116826951",
+        "roomNum": 3 }
+     ]
+}'
+
+
+
+curl -iXPOST localhost:8081/reservation/accept/17 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4"  -H "Content-Type: application/json" -d '{
+	"message": "You are very welcome Tony Kroos and everything you want we will do our best to hep you.",
+	"assignments": [ { "reservedPricing": 37, "rooms": ["A2", "A4", "A5"] },
+	                 { "reservedPricing": 38, "rooms": ["C4", "C5", "C6"] } ] }'
+
+
+
+
+-- Period Report
+
+
+curl -iXGET localhost:8081/bookable/period/AVdtd2_uBO20bzl3OFV2 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{
+    "from": "2016-09-30T00:00:00Z",
+    "to": "2016-10-05T00:00:00Z"
+    }'
+
+
+
+curl -iXGET localhost:8081/property/AvBookables/AVdtd2_uBO20bzl3OFV2 -H "Content-Type: application/json" -d '{
+    "checkIn": "2016-09-30T00:00:00Z",
+    "checkOut": "2016-10-05T00:00:00Z"
+    }'
+    
+    
+
+curl -iXGET localhost:8081/property/periodReport/AVdsn83ZBO20bzl3OFVt -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{
+    "from": "2016-09-28T00:00:00Z",
+    "to": "2016-10-15T00:00:00Z"
+    }'
+
+
+
+curl -iXGET localhost:8081/bookable/incomeInfo/AVdtfbhgBO20bzl3OFV4 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '{
+    "from": "2016-09-05T00:00:00Z",
+    "to": "2016-10-16T00:00:00Z"
+  }'
+
+
+
+curl -iXGET localhost:8081/reservation/availableRooms/17 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJqcm9kcmlndWV6MTAiLCJqdGkiOiIyMDE2LTA5LTI3IDE3OjAxOjIxLjE3OTkyOSBVVENfMTAiLCJleHAiOjE0NzU2ODY4ODEsImlzcyI6ImRlc3Rpbm9zSU8gQVBJIiwidXNlcklkIjoxMCwiaWF0IjoxNDc0OTk1NjgxLCJhdWQiOlsiZGVzdGlub3NJTyBBUEkgdXNlcnMiXX0.Ni8Hknv9s9d0RQSvfZg5mg61DK0HSQvzpJe9yCQOvi4" 
+
+curl -iXPUT localhost:8081/reservation/admin/absent/9 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzaWduZWQgdXNlcklkIiwicHJvZk5hbWUiOiJiaWdnaWVzbWFsbHMiLCJqdGkiOiIyMDE2LTA5LTI3IDE2OjU3OjA1LjgyOTcxNCBVVENfNyIsImV4cCI6MTQ3NTY4NjYyNiwiaXNzIjoiZGVzdGlub3NJTyBBUEkiLCJ1c2VySWQiOjcsImlhdCI6MTQ3NDk5NTQyNiwiYXVkIjpbImRlc3Rpbm9zSU8gQVBJIHVzZXJzIl19.dtIuFLQTtcwSkqYyemG6OazowmcvQedK1N2EqZJ5rBE" -H "Content-Type: application/json" -d '"you did not showed up so you are absent... damn it!!!"'
+
+
+
+
+
+
+
+

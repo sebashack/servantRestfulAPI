@@ -1,0 +1,109 @@
+Article Rest API
+
+1) Get an Article
+
+- Request: 
+
+curl -iXGET localhost:8081/article/<articleId>?lang=es
+
+-- 404 Not Found
+ + Article was not found.
+ + Abstracts not found.
+ 
+-- 500 Not Found
+
+ + Error parsing ES article response.
+ + Error parsing ES abstract response
+
+
+
+- Successful response:
+
+-- 200 OK   
+   Content-Type: application/json
+   <articleWithAbstracts>
+
+
+
+
+
+2) Get all Articles in a given language
+
+- Request:
+
+http://localhost:8081/articles?lang=esp&from=0&size=10 
+
+
+-- 404 Not Found
+ + Abstracts not found.
+ 
+-- 500 Not Found
+
+ + Error parsing ES abstract response
+
+
+
+- Successful response:
+
+-- 200 OK   
+   Content-Type: application/json
+   <Abstracts>
+
+
+
+
+
+3) Get Articles given a query string
+
+- Request:
+
+http://localhost:8081/articles/search?lang=esp&words=las+lajas+nariño&from=0&size=10 
+
+-- 404 Not Found
+ + Abstracts not found.
+ 
+-- 500 Not Found
+
+ + Error parsing ES abstract response
+
+
+
+- Successful response:
+
+-- 200 OK   
+   Content-Type: application/json
+   <Abstracts>
+
+
+
+
+
+
+4) Get Articles related to a location
+
+- Request:
+
+http://localhost:8081/articles/location/CO?lang=esp&from=0&size=20&region=amazonas&city=leticia
+
+
+
+-- 404 Not Found
+ + Abstracts not found.
+ 
+-- 500 Not Found
+
+ + Error parsing ES abstract response
+
+
+
+- Successful response:
+
+-- 200 OK   
+   Content-Type: application/json
+   <Abstracts>
+
+
+
+
+
+
